@@ -45,8 +45,6 @@ img {
 max-height:30px;
 }
 
-
-
 .aboutMe { 
 	background-color: white;
 	opacity: .8;
@@ -58,3 +56,7 @@ max-height:30px;
 	border-radius: 5px;
 
 }
+
+#target {
+        width: 345px;
+      }
