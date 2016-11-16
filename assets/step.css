@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Dancing+Script:400,700|Poiret+One&subset=cyrillic,latin-ext');
+
+
+
 .jumbotron {
 	margin-left:10px;
 	margin-right:10px;
@@ -5,6 +9,9 @@
 	opacity: .8;
 	color: black;
 	border-radius: 5px;
+	font-family: 'Dancing Script', cursive;
+	font-size: 40px;
+	text-align: center;
 
 }
 
@@ -19,6 +26,7 @@ body {
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
+	font-family: 'Josefin Slab', serif;
 
 }
 .button-header {
@@ -30,13 +38,27 @@ body {
 	margin-left:10px;
 	margin-right:10px;
 
+
+
 }
+
+button:visitsed {
+	background-color:orange;
+}
+
+
 .nav{
 	width:100px;
 	height:60px;
 	font-size:12px;
 	padding-right:8px;
 
+}
+
+ .nav:hover {
+ 	border:1px solid orange;
+	background-color: orange;
+	
 }
 
 img {
@@ -54,6 +76,9 @@ max-height:30px;
 	margin-left:10px;
 	margin-right:10px;
 	border-radius: 5px;
+	padding: 10px;
+	margin-top: 10px;
+	font-size: 20px;
 
 }
 
