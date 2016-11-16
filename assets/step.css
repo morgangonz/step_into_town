@@ -1,0 +1,60 @@
+.jumbotron {
+	margin-left:10px;
+	margin-right:10px;
+	background-color: white;
+	opacity: .8;
+	color: black;
+	border-radius: 5px;
+
+}
+
+h1, p {
+	padding-right:20px;
+	padding-left:20px;
+}
+
+body {
+	background-image: url("http://www.labelscar.com/wp-content/uploads/2007/05/nashua-landing.jpg");
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+
+}
+.button-header {
+	max-width:1500px;
+	max-height:500px;
+	
+	opacity: .8;
+	color: black;
+	margin-left:10px;
+	margin-right:10px;
+
+}
+.nav{
+	width:100px;
+	height:60px;
+	font-size:12px;
+	padding-right:8px;
+
+}
+
+img {
+	max-width:30px;
+	
+max-height:30px;
+}
+
+
+
+.aboutMe { 
+	background-color: white;
+	opacity: .8;
+	color: black;
+	height: 300px;
+	width:600px;
+	margin-left:10px;
+	margin-right:10px;
+	border-radius: 5px;
+
+}
