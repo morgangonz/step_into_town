@@ -68,5 +68,18 @@
   //*******  Finish Google Map  *******//
 
 
+//***************** Code for Sqoot API *******************
 
+  var queryURL = 'http://api.sqoot.com/v2/deals?api_key=39zxwo4hbW89U737y87p&query=orlando';
 
+  $.ajax({url: queryURL, method: 'GET'}).done(function(response) {
+       console.log(response.deals[0].deal.image_url);
+       console.log(response.deals[2].deal.image_url);
+       console.log(response.deals[3].deal.image_url);
+       console.log(response.deals[4].deal.image_url);
+
+       $('#showSqootDeals').html(response.deals[0].deal.title);
+   
+  });
+
+// ****************** Finish Sqoot API *************************
