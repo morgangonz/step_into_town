@@ -21,8 +21,7 @@ h1, p {
 }
 
 body {
-	background-image: url("http://www.labelscar.com/wp-content/uploads/2007/05/nashua-landing.jpg");
-	background-attachment: fixed;
+	
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;

@@ -24,86 +24,69 @@
 
 		<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     	<meta charset="utf-8">
-	</head>
-	<body>
-		<div class="jumbotron">
-		  <h1>Step'N'Town</h1>
-		  <!--
-<<<<<<< HEAD
-		  <p>A self guided walking tour of divided areas within a specific city that provides a day filled of places to eat, things to do, shopping and unique finds--all within walking distance of each other.</p>
-		  -->
-=======
-		  <p>A self guided walking tour of divided areas within a specific city that provides a day filled of places to eat, things to do, shopping and unique finds--all within walking distance of each other.</p> -->
->>>>>>> 26aa3abda7e9129e25777af0343c461b5099c94e
-		  	<div class="col-lg-6">
-				<div class="input-group">
-			      <input type="text" class="form-control" placeholder="Enter city, state, zip or area">
-			      <span class="input-group-btn">
-			        <button class="btn btn-default" type="button"><img src = "images/steps.png"></button>
-			      </span>
-	    		</div>
-			</div>
-		</div>	
+	
+		<header>
+			<div class="jumbotron">
+			  <h1>Step'N'Town</h1>
+			  <h3> Walk your vacation away </h3>
+			  <br>
+			  <a href="#about" class="btn btn-dark btn-lg">Start Stepping</a>
+			</div> 
 
-<<<<<<< HEAD
-		<!-- buttons (header)-->
-		<div class= "button-header">
-			<button type="button" class="btn btn-default btn-lg nav"><img src = "images/active_heart.png"><br>Activities</button>
-			<button type="button" class="btn btn-default btn-lg nav"> <img src = "images/food.png"><br>Food </button>
-			<button type="button" class="btn btn-default btn-lg nav"><img src = "images/drinks.png"><br>Drinks </button>
-			<button type="button" class="btn btn-default btn-lg nav"><img src = "images/shopping.png"><br>Shopping </button>
-			<button type="button" class="btn btn-default btn-lg nav"><img src = "images/park.png"><br>Parks </button>
-			<button type="button" class="btn btn-default btn-lg nav"><img src = "images/museum.png"><br>Museums </button>
-			<button type="button" class="btn btn-default btn-lg nav"><img src = "images/deals.png"><br>Deals
-			</button>
-		</div>
-=======
+			<div class="col-lg-12 text-center">
+                    <h2>We create a friendly walking experience to help you feel more like a local and less like a tourist. </h2>
+                    <p class="lead">Providing a day filled of places to eat, things to do, shopping and unique finds--all within walking distance of each other. </p>
+            </div>
 
-		<div class="row">
+			  
+				<br>
+			  	
+				     
+				
+			</div>	
+		</header>	
+	</head>		
 
-				<div class="col-md-6">
 
-					<div class="aboutMeBig">
+
+<body>
+<!-- Activities buttons -->
+    <!-- The circle icons feature an img and then words under for an entire on click btn -->
+    <section class="services bg-primary">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-lg-10 col-lg-offset-1">
+                   
+                    <div class="row">
+					<span class= "button-header">
+						<button type="button" class="btn btn-default btn-lg nav"><img src = "images/active_heart.png"><br>Activities</button>
+						<button type="button" class="btn btn-default btn-lg nav"> <img src = "images/food.png"><br>Food </button>
+						<button type="button" class="btn btn-default btn-lg nav"><img src = "images/drinks.png"><br>Drinks </button>
+						<button type="button" class="btn btn-default btn-lg nav"><img src = "images/shopping.png"><br>Shopping </button>
+						<button type="button" class="btn btn-default btn-lg nav"><img src = "images/park.png"><br>Parks </button>
+						<button type="button" class="btn btn-default btn-lg nav"><img src = "images/museum.png"><br>Museums </button>
+						<button type="button" class="btn btn-default btn-lg nav"><img src = "images/deals.png"><br>Deals
+						</button>
+					</span>	
+    </section>
 					
-						<div class="aboutMe">
-						<h2> About Us</h2>
-							Here at Step'N'Town, we have one goal: A Good Time. Everytime. With this application, users will be able to find the hottest bars, tastiest restuarants, coolest shopping plazas and so much much more. All you need to do is enter a city, state, or area. You are one search away from a night out on the town. 
-
-						</div>
-				>>>>>>> 26aa3abda7e9129e25777af0343c461b5099c94e
-					</div>
 				
-				</div>
-				<!-- map -->
-				<div class="col-md-6">
+<!-- map -->
+<div class="col-md-12">
 
-					<input id="pac-input" class="controls" type="text" placeholder="Search">
-    				<div id="stepMap"></div>
+	<input id="pac-input" class="controls" type="text" placeholder="
+	Search">
+	<div id="stepMap"></div>
 
-    			</div>
+</div>
 
-		</div>
-
-		<div class="row">
-				<div class="col-md-6 aboutMeBig">
-				
-					<div class="aboutMe" id="showSqootDeals">
-						<h2> About Me</h2>
-						Here at Step Into Town, we have one goal: A Good Time. Everytime. With this application, users will be able to find the hottest bars, tastiest restuarants, coolest shopping plazas and so much much more. All you need to do is enter a city, state, or area. You are one search away from a night out on the town. 
-					</div>
-
-
-				</div>
-				
-		</div>
 	
 
-<!-- Hi everybody, It's me, Tara! -->
+		
 
 
-
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtZh3fBBjBxwmh7Y5QSF_bdw7fp7Eapw8&libraries=places&callback=initAutocomplete"
-		async defer>
-		</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtZh3fBBjBxwmh7Y5QSF_bdw7fp7Eapw8&libraries=places&callback=initAutocomplete"
+async defer>
+</script>
 	</body>
 </html>
