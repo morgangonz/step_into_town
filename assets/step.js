@@ -39,10 +39,10 @@
       places.forEach(function(place) {
         var icon = {
           url: place.icon,
-          size: new google.maps.Size(71, 71),
+          size: new google.maps.Size(571, 571),
           origin: new google.maps.Point(0, 0),
           anchor: new google.maps.Point(17, 34),
-          scaledSize: new google.maps.Size(25, 25)
+          scaledSize: new google.maps.Size(500, 525)
         };
 
         // Create a marker for each place.
