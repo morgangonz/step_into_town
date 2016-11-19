@@ -5,37 +5,46 @@
 .jumbotron {
 	margin-left:10px;
 	margin-right:10px;
-	background-color: white;
-	opacity: .8;
-	color: black;
+	background-image: url("../images/walking_population.png");
+	color: white;
 	border-radius: 5px;
-	font-family: 'Dancing Script', cursive;
-	font-size: 40px;
+	font-family: 'Satisfy', cursive;
 	text-align: center;
+}
+#header {
+	font-size:75px;
+}
+
+#subhead {
+	font-size:30px;
+}
+
+#startStep {
+	background-color:white;
+	opacity:.8;
+	border-radius: 5px;
+	font-family: 'Satisfy', cursive;
+	font-size:16px;
 
 }
 
-h1, p {
-	padding-right:20px;
-	padding-left:20px;
-}
-
-body {
+#about {
 	
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
-	font-family: 'Josefin Slab', serif;
-
 }
+.lead {
+	font-family: 'Kalam', cursive;
+	font-size: 16px;
+}
+
 .button-header {
 	max-width:1500px;
 	max-height:500px;
-	
+	border-radius:50px;
 	opacity: .8;
 	color: black;
 	margin-left:10px;
 	margin-right:10px;
+
 
 
 
