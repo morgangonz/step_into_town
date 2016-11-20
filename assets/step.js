@@ -73,15 +73,19 @@ function initAutocomplete() {
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
 
+
   // Create the search box and link it to the UI element.
   var input = document.getElementById('pac-input');
   var searchBox = new google.maps.places.SearchBox(input);
   
-
   // Bias the SearchBox results towards current map's viewport.
   map.addListener('bounds_changed', function() {
+
     searchBox.setBounds(map.getBounds());
+    //clear the textbox 
+    $("#pac-input").val("");
   });
+
 
   var markers = [];
   // [START region_getplaces]
@@ -130,7 +134,7 @@ function initAutocomplete() {
   });
 
 };
-//**********  Finish Google Map  *************//
+
 
 
 //***************** Code for Sqoot API *******************
