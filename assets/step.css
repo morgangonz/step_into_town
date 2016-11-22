@@ -11,13 +11,16 @@
 	font-family: 'Satisfy', cursive;
 	text-align: center;
 	margin-bottom:0px;
+
 }
 #header {
 	font-size:75px;
+	text-shadow: 3px 3px #4286f4;
 }
 
 #subhead {
 	font-size:30px;
+	text-shadow: 1px 1px #4286f4;
 }
 
 #startStep {
@@ -162,7 +165,8 @@ button:visited {
 /************  finish Map css  ***********/
 .container3 {
 	background-image: url("../images/footprints.png");
-	padding-bottom: 6%;
+	padding-bottom: 5%;
+	
 	
 }
 .container4{
