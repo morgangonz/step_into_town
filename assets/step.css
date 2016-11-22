@@ -11,13 +11,16 @@
 	font-family: 'Satisfy', cursive;
 	text-align: center;
 	margin-bottom:0px;
+
 }
 #header {
 	font-size:75px;
+	text-shadow: 3px 3px #4286f4;
 }
 
 #subhead {
 	font-size:30px;
+	text-shadow: 1px 1px #4286f4;
 }
 
 #startStep {
@@ -30,29 +33,51 @@
 }
 
 #about {
-	padding-top: 45px;
+	padding-top: 30px;
+	padding-bottom:50px;
 	margin-top:0px;
+	color: black;
+	background-color: #edf2f9;
+
 }
 .lead {
 	font-family: 'Kalam', cursive;
 	font-size: 16px;
+	
 }
 
-.button-header {
-	max-width:1500px;
-	max-height:500px;
-	border-radius:50px;
-	opacity: .8;
-	color: black;
-	margin-left:10px;
-	margin-right:10px;
+#services {
+	color: #edf2f9;
+	margin-top:8px;
+
+
 }
+
+.btns {
+	background-color: #4286f4;
+	border: none;
+	border-radius: 100px;
+	height:110px;
+	width:100px;
+	font-weight:bold;
+	margin-top:15px;
+
+}
+
+.btns:hover {
+	background-color:#82abed;
+}
+
+.btns:focus {
+	background-color:#425D8A;
+}
+
 .container2 {
 	background-color: #4286f4;
 	width:100%;
 	height:350px;
 	text-align:center;
-	
+	color: #edf2f9;	
 
 }
 
@@ -140,7 +165,8 @@ button:visited {
 /************  finish Map css  ***********/
 .container3 {
 	background-image: url("../images/footprints.png");
-	padding-bottom: 6%;
+	padding-bottom: 5%;
+	
 	
 }
 .container4{
