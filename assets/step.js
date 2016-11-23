@@ -65,6 +65,26 @@ $("#currentLocation").on("click",function(){
 
 
 
+  //*******  Google Map  *******//    
+  function initAutocomplete() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+     // center: {lat: -33.8688, lng: 151.2195}, // (google API defualt) coordinates for Sydney, Australia
+      center: {lat: 28.5383, lng: -81.3792}, // coordinates for Orlando, FL
+      zoom: 13,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+
+    // Create the search box and link it to the UI element.
+    var input = document.getElementById('pac-input');
+    var searchBox = new google.maps.places.SearchBox(input);
+
+
+    // Bias the SearchBox results towards current map's viewport.
+    map.addListener('bounds_changed', function() {
+    searchBox.setBounds(map.getBounds());
+
+    });
+
 //*************  Google Map  *************//    
 function initAutocomplete() {
   var map = new google.maps.Map(document.getElementById('map'), {
@@ -72,6 +92,22 @@ function initAutocomplete() {
     zoom: 2,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
+
+      if (places.length == 0) {
+        return;
+
+// =============== Begin code to link Goolge city input to Sqoot API ===========================================
+      // look inside Google API object for name of city that user typed
+      } else {
+      var tempCity = places[0].formatted_address;
+     // this tells js to look for teh first comma in the string for formatted_address. It then takes whatever is in front of it (the zero index after the split)
+      tempCity = tempCity.split(",")[0];
+      console.log("this is" + tempCity);
+      // run ajax call to Sqoot API
+      callCity(tempCity);
+
+      }
+// ================= End code to link Google city input to Sqoot API ==========================================
 
 
   // Create the search box and link it to the UI element.
@@ -139,18 +175,75 @@ function initAutocomplete() {
 
 
 
-//***************** Code for Sqoot API *******************
+//***************** START CODING FOR SQOOT API *******************
 
-  var queryURL = 'http://api.sqoot.com/v2/deals?api_key=39zxwo4hbW89U737y87p&query=orlando';
+// ====================== Pseudo Code ========================
+// Users can see Sqoot's offerings in two ways:
+// when a user types a city name into the map's search bar, use that city for sqoot's query
+// OR
+// when a user clicks on one of the navigation buttons, Sqoot shows them deals related to that category
+// ===========================================================================================
 
-  $.ajax({url: queryURL, method: 'GET'}).done(function(response) {
-       console.log(response.deals[0].deal.image_url);
-       console.log(response.deals[2].deal.image_url);
-       console.log(response.deals[3].deal.image_url);
-       console.log(response.deals[4].deal.image_url);
 
-       $('#showSqootDeals').html(response.deals[0].deal.title);
-   
+
+// =============== Global Variabls ===============================
+
+var deals; // shows Sqoot's API parameter for a deal, including some of its sub-information
+var image; // shows Sqoot's API image parameter (shows an image related to the deal)
+var inputCity = "Orlando"; // city deals default to Orlando, FL on page load
+
+// When the page loads, the div holding Sqoot's information should be empty
+$('#dealsFromSquoot').empty();
+
+// Ajax call to Sqoot API
+// this first call populates the Sqoot Deals div
+var queryURL = 'http://api.sqoot.com/v2/deals?api_key=39zxwo4hbW89U737y87p&query=' + inputCity + '&radius=10';
+console.log(queryURL);
+
+// this function inserts the search box input from Google as the target for Sqoot's API query
+function callCity(tempCity, category) {
+
+  queryURL = 'http://api.sqoot.com/v2/deals?api_key=39zxwo4hbW89U737y87p&query=' + tempCity + '&radius=10';
+
+  $.ajax ({
+  url: queryURL,
+  method: 'GET'
+  })
+  
+  .done(function(response) {
+
+    // these variables will hold the 5 deals for each city; their contents will change as the city changes
+    var results = [];
+    var image = [];
+    var responseHTML = "";
+
+    // Get 5 results and their related images from Sqoot
+    for (var i = 0; i < 5; i++) {
+
+      if (response.deals[i] != null) {
+
+    // push the first 5 queries into the arrays
+    results.push(response.deals[i].deal.title);
+    image.push(response.deals[i].deal.image_url);
+
+      }
+    }
+
+
+    // for every query reply, a div with the class responseDIV is made, inside that div is the image and title
+    for (i = 0; i < 5; i++) {
+
+        responseHTML = responseHTML + "<div class='responseDIV'>";
+        responseHTML = responseHTML + "<img src='" + image[i] + "' class='responseIMAGE'/>";
+        responseHTML = responseHTML + "<p class='responseTEXT'>" + results[i] + "</p>";
+        responseHTML = responseHTML + "</div>";
+    }
+    //make the results appear on the HTML page
+    $('#dealsFromSqoot').html(responseHTML);
+
   });
 
-// ****************** Finish Sqoot API *************************
+}
+
+// ============== Begin code for linking Sqoot query by category ======================================
+//var catButtons = document.getElementsByClassName("btn btn-default btn-lg");
