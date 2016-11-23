@@ -42,15 +42,12 @@
 }
 .lead {
 	font-family: 'Kalam', cursive;
-	font-size: 16px;
-	
+	font-size: 16px;	
 }
 
 #services {
 	color: #edf2f9;
 	margin-top:8px;
-
-
 }
 
 .btns {
@@ -61,7 +58,6 @@
 	width:100px;
 	font-weight:bold;
 	margin-top:15px;
-
 }
 
 .btns:hover {
@@ -90,8 +86,6 @@ button:visited {
 	height:100px;
 	font-size:12px;
 	padding-right:8px;
-
-
 }
 
  .nav:hover {
@@ -105,7 +99,6 @@ button:visited {
 .icon {
 	max-width:30px;
 	max-height:30px;
-	padding-bottom: 30px;
 }
 
 

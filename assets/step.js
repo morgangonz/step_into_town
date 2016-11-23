@@ -1,3 +1,27 @@
+//******  icon click function  *******//
+$("#active").on("click",function(){
+  console.log("hi");
+});
+$("#food").on("click",function(){
+  console.log("hi");
+});
+$("#drinks").on("click",function(){
+  console.log("hi");
+});
+$("#shopping").on("click",function(){
+  console.log("hi");
+});
+$("#parks").on("click",function(){
+  console.log("hi");
+});
+$("#museums").on("click",function(){
+  console.log("hi");
+});
+$("#deals").on("click",function(){
+  console.log("hi");
+});
+
+
 
 //*********  Geo location  **********//
 $("#currentLocation").on("click",function(){
