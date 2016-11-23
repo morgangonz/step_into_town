@@ -57,7 +57,7 @@ $("#currentLocation").on("click",function(){
 
         // bug check
         //console.log(errorMessage);
-        document.getElementById("result").innerHTML = errorMessage ;
+        document.getElementById("result").innerHTML = errorMessage;
       }
     );
   };
@@ -68,7 +68,7 @@ $("#currentLocation").on("click",function(){
 //*************  Google Map  *************//    
 function initAutocomplete() {
   var map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 24.116675, lng: -19.160156},
+    center: {lat: 30.463426, lng: -3.558594},
     zoom: 2,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
@@ -134,6 +134,8 @@ function initAutocomplete() {
   });
 
 };
+
+
 
 
 
