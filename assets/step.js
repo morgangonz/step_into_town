@@ -22,7 +22,7 @@
     var markers = [];
     // [START region_getplaces]
     // Listen for the event fired when the user selects a prediction and retrieve
-    // more details for that place.
+    // more details for that place.  
     searchBox.addListener('places_changed', function() {
       var places = searchBox.getPlaces();
 
@@ -107,10 +107,11 @@ $('#dealsFromSquoot').empty();
 var queryURL = 'http://api.sqoot.com/v2/deals?api_key=39zxwo4hbW89U737y87p&query=' + inputCity + '&radius=10';
 console.log(queryURL);
 
+console.log(tempCity);
 // this function inserts the search box input from Google as the target for Sqoot's API query
 function callCity(tempCity, category) {
 
-  queryURL = 'http://api.sqoot.com/v2/deals?api_key=39zxwo4hbW89U737y87p&query=' + tempCity + '&radius=10';
+  queryURL = 'http://api.sqoot.com/v2/deals?api_key=39zxwo4hbW89U737y87p&query=' + inputCity + '&radius=10';
 
   $.ajax ({
   url: queryURL,
@@ -153,4 +154,52 @@ function callCity(tempCity, category) {
 }
 
 // ============== Begin code for linking Sqoot query by category ======================================
-//var catButtons = document.getElementsByClassName("btn btn-default btn-lg");
+
+$('#food').click(function(tempCity) {
+  console.log("you clicked food");
+
+  console.log("is the query running?")
+  var queryURLFood = 'http://http://api.sqoot.com/v2/deals?api_key=39zxwo4hbW89U737y87p&radius=10' + tempCity + '&category_slugs=restaurants';
+  console.log(queryURLFood);
+
+  console.log("yes it's running")
+
+  $('#dealsFromSquoot').empty();
+
+  $.ajax ({
+  url: queryURL,
+  method: 'GET'
+  }).done(function(response) {
+
+    // these variables will hold the 5 deals for each city; their contents will change as the city changes
+    var results = [];
+    var image = [];
+    var responseHTML = "";
+
+    // Get 5 results and their related images from Sqoot
+    for (var i = 0; i < 5; i++) {
+
+      if (response.deals[i] != null) {
+
+    // push the first 5 queries into the arrays
+    results.push(response.deals[i].deal.title);
+    image.push(response.deals[i].deal.image_url);
+
+      }
+    }
+
+    for (i = 0; i < 5; i++) {
+
+        responseHTML = responseHTML + "<div class='responseDIV'>";
+        responseHTML = responseHTML + "<img src='" + image[i] + "' class='responseIMAGE'/>";
+        responseHTML = responseHTML + "<p class='responseTEXT'>" + results[i] + "</p>";
+        responseHTML = responseHTML + "</div>";
+    }
+    //make the results appear on the HTML page
+    $('#dealsFromSqoot').html(responseHTML);
+
+  })
+
+  console.log("food?");
+
+});
