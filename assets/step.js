@@ -64,27 +64,6 @@ $("#currentLocation").on("click",function(){
 });
 
 
-
-  //*******  Google Map  *******//    
-  function initAutocomplete() {
-    var map = new google.maps.Map(document.getElementById('map'), {
-     // center: {lat: -33.8688, lng: 151.2195}, // (google API defualt) coordinates for Sydney, Australia
-      center: {lat: 28.5383, lng: -81.3792}, // coordinates for Orlando, FL
-      zoom: 13,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    });
-
-    // Create the search box and link it to the UI element.
-    var input = document.getElementById('pac-input');
-    var searchBox = new google.maps.places.SearchBox(input);
-
-
-    // Bias the SearchBox results towards current map's viewport.
-    map.addListener('bounds_changed', function() {
-    searchBox.setBounds(map.getBounds());
-
-    });
-
 //*************  Google Map  *************//    
 function initAutocomplete() {
   var map = new google.maps.Map(document.getElementById('map'), {
@@ -92,23 +71,6 @@ function initAutocomplete() {
     zoom: 2,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
-
-      if (places.length == 0) {
-        return;
-
-// =============== Begin code to link Goolge city input to Sqoot API ===========================================
-      // look inside Google API object for name of city that user typed
-      } else {
-      var tempCity = places[0].formatted_address;
-     // this tells js to look for teh first comma in the string for formatted_address. It then takes whatever is in front of it (the zero index after the split)
-      tempCity = tempCity.split(",")[0];
-      console.log("this is" + tempCity);
-      // run ajax call to Sqoot API
-      callCity(tempCity);
-
-      }
-// ================= End code to link Google city input to Sqoot API ==========================================
-
 
   // Create the search box and link it to the UI element.
   var input = document.getElementById('pac-input');
@@ -132,7 +94,19 @@ function initAutocomplete() {
 
     if (places.length == 0) {
       return;
-    }
+    // =============== Begin code to link Goolge city input to Sqoot API ===========================================
+      // look inside Google API object for name of city that user typed
+      }else {
+      var tempCity = places[0].formatted_address;
+     // this tells js to look for teh first comma in the string for formatted_address. It then takes whatever is in front of it (the zero index after the split)
+      tempCity = tempCity.split(",")[0];
+      console.log("this is" + tempCity);
+      // run ajax call to Sqoot API
+      callCity(tempCity);
+
+      }
+// ================= End code to link Google city input to Sqoot API ==========================================
+
 
     // Clear out the old markers.
     markers.forEach(function(marker) {
@@ -177,16 +151,14 @@ function initAutocomplete() {
 
 //***************** START CODING FOR SQOOT API *******************
 
-// ====================== Pseudo Code ========================
-// Users can see Sqoot's offerings in two ways:
-// when a user types a city name into the map's search bar, use that city for sqoot's query
-// OR
-// when a user clicks on one of the navigation buttons, Sqoot shows them deals related to that category
-// ===========================================================================================
+//Users can see Sqoot's offerings in two ways:
+//when a user types a city name into the map's search bar, use that city for sqoot's query
+//OR
+//===========================================================================================
 
 
 
-// =============== Global Variabls ===============================
+//=============== Global Variabls ===============================
 
 var deals; // shows Sqoot's API parameter for a deal, including some of its sub-information
 var image; // shows Sqoot's API image parameter (shows an image related to the deal)
@@ -243,7 +215,7 @@ function callCity(tempCity, category) {
 
   });
 
-}
+};
 
 // ============== Begin code for linking Sqoot query by category ======================================
 //var catButtons = document.getElementsByClassName("btn btn-default btn-lg");
