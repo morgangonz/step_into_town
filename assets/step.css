@@ -117,6 +117,7 @@ button:visited {
   padding-right:15px;	
 
 }
+
 .controls {
   margin-right: 25%;
   border: 1px solid transparent;
@@ -172,15 +173,40 @@ button:visited {
 .container4{
 	
 	padding-bottom: rgba(0, 153, 255,0.9);
-	margin-bottom: 200px;
+	margin-bottom: 20px;
 	
 }
 
-
-	
-}
 h3{
 	font-family: 'Josefin Slab', serif;
 }
 
+/* ============ CSS for deals div ===========*/
 
+
+#dealsFromSqoot {
+  position-top: -200px;
+  width: 1050px;
+  padding-bottom: 20px;
+  font-family: 'Josefin Slab', serif;
+  font-size: 15px;
+}
+
+img {
+	width: 120px;
+	height: 80px;	
+}
+
+.responseDIV {
+	float: left;
+	position: relative;
+	display: inline-block;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	padding: 10px;
+	width: 200px;
+	max-width: 200px;
+	border: 3px dotted #0088dd;
+	min-height: 220px;
+
+}
