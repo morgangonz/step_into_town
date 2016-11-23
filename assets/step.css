@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Dancing+Script:400,700|Poiret+One&subset=cyrillic,latin-ext');
 
-
-
 .jumbotron {
 	margin-left:10px;
 	margin-right:10px;
@@ -17,21 +15,17 @@
 	font-size:75px;
 	text-shadow: 3px 3px #4286f4;
 }
-
 #subhead {
 	font-size:30px;
 	text-shadow: 1px 1px #4286f4;
 }
-
 #startStep {
 	background-color:white;
 	opacity:.8;
 	border-radius: 5px;
-	font-family: 'Josefin Slab', serif;
+	font-family: 'Kalam', cursive;
 	font-size:18px;
-
 }
-
 #about {
 	padding-top: 30px;
 	padding-bottom:50px;
@@ -54,6 +48,7 @@
 }
 
 .btns {
+	display:inline;
 	background-color: #4286f4;
 	border: none;
 	border-radius: 100px;
@@ -72,6 +67,7 @@
 	background-color:#425D8A;
 }
 
+
 .container2 {
 	background-color: #4286f4;
 	width:100%;
@@ -79,11 +75,6 @@
 	text-align:center;
 	color: #edf2f9;	
 }
-
-button:visited {
-	background-color:orange;
-}
-
 
 .nav{
 	width:100px;
@@ -203,10 +194,7 @@ h3{
   font-size: 15px;
 }
 
-img {
-	width: 120px;
-	height: 80px;	
-}
+
 
 .responseDIV {
 	float: left;

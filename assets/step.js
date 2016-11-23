@@ -92,6 +92,14 @@ function initAutocomplete() {
   searchBox.addListener('places_changed', function() {
     var places = searchBox.getPlaces();
 
+    //variable to store input from search box
+    var b = $("input").val().trim();
+    //SESSION STORAGE: merged to master by Morgan created by Danei in class Tues 11-22
+     sessionStorage.setItem("location", b);
+    
+     
+     return false;
+
     if (places.length == 0) {
       return;
     // =============== Begin code to link Goolge city input to Sqoot API ===========================================
