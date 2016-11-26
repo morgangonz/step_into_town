@@ -28,11 +28,13 @@ $("#currentLocation").on("click",function(){
 
   // check for Geolocation support
   if(navigator.geolocation){
+
     //get current position
     navigator.geolocation.getCurrentPosition(
 
       //when success 
       function(position){
+        console.log(position);
         // data
         var data = position.coords;
         var lat = data.latitude;
@@ -60,6 +62,8 @@ $("#currentLocation").on("click",function(){
           map: map,
           position: latlng,
         } ) ;
+
+        //
       },
 
       //when error
@@ -70,7 +74,6 @@ $("#currentLocation").on("click",function(){
           "UNKNOWN ERROR",
           "PERMISSION DENIED",
           "POSITION UNAVAILABLE",
-          "TIMEOUT"
         ];
 
         //error number
@@ -88,11 +91,16 @@ $("#currentLocation").on("click",function(){
 });
 
 
-//*************  Google Map  *************//    
+//*************  Google Map  *************//   
+
 function initAutocomplete() {
   var map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 30.463426, lng: -3.558594},
     zoom: 2,
+    scrollwheel: false,
+    disableDefaultUI: true,
+    zoomControl: true,
+    scaleControl: true,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
 
