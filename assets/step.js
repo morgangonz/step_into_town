@@ -1,5 +1,6 @@
 
-  //*******  Google Map  *******//    
+  //*******  Google Map  *******//  
+
   function initAutocomplete() {
     var map = new google.maps.Map(document.getElementById('map'), {
      // center: {lat: -33.8688, lng: 151.2195}, // (google API defualt) coordinates for Sydney, Australia
@@ -107,7 +108,6 @@ $('#dealsFromSquoot').empty();
 var queryURL = 'http://api.sqoot.com/v2/deals?api_key=39zxwo4hbW89U737y87p&query=' + inputCity + '&radius=10';
 console.log(queryURL);
 
-console.log(tempCity);
 // this function inserts the search box input from Google as the target for Sqoot's API query
 function callCity(tempCity, category) {
 
@@ -159,12 +159,12 @@ $('#food').click(function(tempCity) {
   console.log("you clicked food");
 
   console.log("is the query running?")
-  var queryURLFood = 'http://http://api.sqoot.com/v2/deals?api_key=39zxwo4hbW89U737y87p&radius=10' + tempCity + '&category_slugs=restaurants';
+  var queryURLFood = 'http://http://api.sqoot.com/v2/deals?api_key=39zxwo4hbW89U737y87p&radius=10' + inputCity + '&category_slugs=restaurants';
   console.log(queryURLFood);
 
   console.log("yes it's running")
 
-  $('#dealsFromSquoot').empty();
+  $('.responseDIV').remove();
 
   $.ajax ({
   url: queryURL,
@@ -202,4 +202,24 @@ $('#food').click(function(tempCity) {
 
   console.log("food?");
 
+});
+
+$('#activities').click(function(tempCity) {
+  //do some stuff here
+});
+
+$('#drinks').click(function(tempCity) {
+  //do some stuff here
+});
+
+$('#shopping').click(function(tempCity) {
+  //do some stuff here
+});
+
+$('#parks').click(function(tempCity) {
+  //do some stuff here
+});
+
+$('#museums').click(function(tempCity) {
+  //do some stuff here
 });
