@@ -155,71 +155,43 @@ function callCity(tempCity, category) {
 
 // ============== Begin code for linking Sqoot query by category ======================================
 
-$('#food').click(function(tempCity) {
+$('#food').click(function(callCategory) {
   console.log("you clicked food");
+  $('.responseDIV').empty();
 
-  console.log("is the query running?")
-  var queryURLFood = 'http://http://api.sqoot.com/v2/deals?api_key=39zxwo4hbW89U737y87p&radius=10' + inputCity + '&category_slugs=restaurants';
-  console.log(queryURLFood);
+  var queryURLFood = 'http://api.sqoot.com/v2/deals?api_key=39zxwo4hbW89U737y87p&query=' + inputCity;
 
-  console.log("yes it's running")
+  function callCategory(tempCity) {
 
-  $('.responseDIV').remove();
+    var queryURLFood = 'http://api.sqoot.com/v2/deals?api_key=39zxwo4hbW89U737y87p&query=' + inputCity;
+    $.ajax ({
+    url: queryURLFood,
+    method: 'GET'
+    }).done(function(response) {
+      
+      console.log("why???????");
 
-  $.ajax ({
-  url: queryURL,
-  method: 'GET'
-  }).done(function(response) {
-
-    // these variables will hold the 5 deals for each city; their contents will change as the city changes
-    var results = [];
-    var image = [];
-    var responseHTML = "";
-
-    // Get 5 results and their related images from Sqoot
-    for (var i = 0; i < 5; i++) {
-
-      if (response.deals[i] != null) {
-
-    // push the first 5 queries into the arrays
-    results.push(response.deals[i].deal.title);
-    image.push(response.deals[i].deal.image_url);
-
-      }
-    }
-
-    for (i = 0; i < 5; i++) {
-
-        responseHTML = responseHTML + "<div class='responseDIV'>";
-        responseHTML = responseHTML + "<img src='" + image[i] + "' class='responseIMAGE'/>";
-        responseHTML = responseHTML + "<p class='responseTEXT'>" + results[i] + "</p>";
-        responseHTML = responseHTML + "</div>";
-    }
-    //make the results appear on the HTML page
-    $('#dealsFromSqoot').html(responseHTML);
-
-  })
-
-  console.log("food?");
+    })
+  }
 
 });
 
 $('#activities').click(function(tempCity) {
-  //do some stuff here
+  console.log("you clicked activities");
 });
 
 $('#drinks').click(function(tempCity) {
-  //do some stuff here
+  console.log("you clicked drinks");
 });
 
 $('#shopping').click(function(tempCity) {
-  //do some stuff here
+  console.log("you clicked shopping");
 });
 
 $('#parks').click(function(tempCity) {
-  //do some stuff here
+  console.log("you clicked parks");
 });
 
 $('#museums').click(function(tempCity) {
-  //do some stuff here
+  console.log("you clicked museums");
 });
