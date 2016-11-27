@@ -1,97 +1,172 @@
-//******  icon click function  *******//
-$("#active").on("click",function(){
-  console.log("hi");
-});
-$("#food").on("click",function(){
-  console.log("hi");
-});
-$("#drinks").on("click",function(){
-  console.log("hi");
-});
-$("#shopping").on("click",function(){
-  console.log("hi");
-});
-$("#parks").on("click",function(){
-  console.log("hi");
-});
-$("#museums").on("click",function(){
-  console.log("hi");
-});
-$("#deals").on("click",function(){
-  console.log("hi");
-});
-
-
-
-//*********  Geo location  **********//
-$("#currentLocation").on("click",function(){
-
-  // check for Geolocation support
-  if(navigator.geolocation){
-
-    //get current position
-    navigator.geolocation.getCurrentPosition(
-
-      //when success 
-      function(position){
-        console.log(position);
-        // data
-        var data = position.coords;
-        var lat = data.latitude;
-        var lng = data.longitude;
-        var alt = data.altitude;
-        var accLatlng = data.accuracy;
-        var accAlt = data.altitudeAccuracy;
-        //0=N,90=E,180=S,270=W
-        var heading = data.heading;
-        var speed = data.speed;
-
-        // bug check
-        //console.log(lat+lng) ;
-
-        var latlng = new google.maps.LatLng(lat,lng);
-
-        // update latlng location on google maps
-        var map = new google.maps.Map(document.getElementById('map'),{
-          zoom: 15,      
-          center: latlng,
-        });
-
-        // put a pin
-        new google.maps.Marker({
-          map: map,
-          position: latlng,
-        } ) ;
-      },
-
-      //when error
-      function(error)
-      {
-        //error comment
-        var errorInfo =[
-          "UNKNOWN ERROR",
-          "PERMISSION DENIED",
-          "POSITION UNAVAILABLE",
-        ];
-
-        //error number
-        var errorNo = error.code;
-
-        //error comment
-        var errorMessage = "Sorry!!! " + errorInfo[errorNo];
-
-        // bug check
-        //console.log(errorMessage);
-        document.getElementById("result").innerHTML = errorMessage;
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Place Autocomplete Hotel Search</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 550px;
+        width: 100%;
       }
-    );
-  };
-});
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      table {
+        font-size: 12px;
+      }
+      #listing {
+        position: absolute;
+        width: 200px;
+        height: 470px;
+        overflow: auto;
+        right: 0px;
+        top: 0px;
+        cursor: pointer;
+        overflow-x: hidden;
+      }
+      #findhotels {
+        position: absolute;
+        text-align: right;
+        width: 100px;
+        font-size: 14px;
+        padding: 4px;
+        z-index: 5;
+        background-color: #fff;
+      }
+      #locationField {
+        position: absolute;
+        width: 190px;
+        height: 25px;
+        left: 108px;
+        top: 0px;
+        z-index: 5;
+        background-color: #000;
+      }
+      #controls {
+        position: absolute;
+        left: 300px;
+        width: 140px;
+        top: 0px;
+        z-index: 5;
+        background-color: #fff;
+      }
+      #autocomplete {
+        width: 100%;
+      }
+      #country {
+        width: 100%;
+      }
+      .placeIcon {
+        width: 20px;
+        height: 34px;
+        margin: 4px;
+      }
+      .hotelIcon {
+        width: 24px;
+        height: 24px;
+      }
+      #resultsTable {
+        border-collapse: collapse;
+        width: 240px;
+      }
+      #rating {
+        font-size: 13px;
+        font-family: Arial Unicode MS;
+      }
+      .iw_table_row {
+        height: 18px;
+      }
+      .iw_attribute_name {
+        font-weight: bold;
+        text-align: right;
+      }
+      .iw_table_icon {
+        text-align: right;
+      }
+    </style>
+  </head>
 
+  <body>
 
-//*************  Google Map  *************//   
+    <div id="findhotels">
+      Find hotels in:
+    </div>
 
- var map, places, infoWindow;
+    <div id="locationField">
+      <input id="autocomplete" placeholder="Enter a city" type="text" />
+    </div>
+
+    <div id="controls">
+      <select id="country">
+        <option value="all">All</option>
+        <option value="au">Australia</option>
+        <option value="br">Brazil</option>
+        <option value="ca">Canada</option>
+        <option value="fr">France</option>
+        <option value="de">Germany</option>
+        <option value="mx">Mexico</option>
+        <option value="nz">New Zealand</option>
+        <option value="it">Italy</option>
+        <option value="za">South Africa</option>
+        <option value="es">Spain</option>
+        <option value="pt">Portugal</option>
+        <option value="us" selected>U.S.A.</option>
+        <option value="uk">United Kingdom</option>
+      </select>
+    </div>
+
+    <div id="map"></div>
+
+    <div id="listing">
+      <table id="resultsTable">
+        <tbody id="results"></tbody>
+      </table>
+    </div>
+
+    <div style="display: none">
+      <div id="info-content">
+        <table>
+          <tr id="iw-url-row" class="iw_table_row">
+            <td id="iw-icon" class="iw_table_icon"></td>
+            <td id="iw-url"></td>
+          </tr>
+          <tr id="iw-address-row" class="iw_table_row">
+            <td class="iw_attribute_name">Address:</td>
+            <td id="iw-address"></td>
+          </tr>
+          <tr id="iw-phone-row" class="iw_table_row">
+            <td class="iw_attribute_name">Telephone:</td>
+            <td id="iw-phone"></td>
+          </tr>
+          <tr id="iw-rating-row" class="iw_table_row">
+            <td class="iw_attribute_name">Rating:</td>
+            <td id="iw-rating"></td>
+          </tr>
+          <tr id="iw-website-row" class="iw_table_row">
+            <td class="iw_attribute_name">Website:</td>
+            <td id="iw-website"></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <script>
+      // This example uses the autocomplete feature of the Google Places API.
+      // It allows the user to find all hotels in a given place, within a given
+      // country. It then displays markers for all the hotels returned,
+      // with on-click details for each hotel.
+
+      // This example requires the Places library. Include the libraries=places
+      // parameter when you first load the API. For example:
+      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+      var map, places, infoWindow;
       var markers = [];
       var autocomplete;
       var countryRestrict = {'country': 'us'};
@@ -155,13 +230,12 @@ $("#currentLocation").on("click",function(){
 
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 30.463426, lng: -3.558594},
+          zoom: countries['us'].zoom,
+          center: countries['us'].center,
           mapTypeControl: false,
           panControl: false,
-          scrollwheel: false,
           zoomControl: false,
-          streetViewControl: false,
-          zoom: 2
+          streetViewControl: false
         });
 
         infoWindow = new google.maps.InfoWindow({
@@ -171,8 +245,8 @@ $("#currentLocation").on("click",function(){
         // Create the autocomplete object and associate it with the UI input control.
         // Restrict the search to the default country, and to place type "cities".
         autocomplete = new google.maps.places.Autocomplete(
-            /** @type {!HTMLInputElement} */ 
-            (document.getElementById('autocomplete')), {
+            /** @type {!HTMLInputElement} */ (
+                document.getElementById('autocomplete')), {
               types: ['(cities)'],
               componentRestrictions: countryRestrict
             });
@@ -358,76 +432,9 @@ $("#currentLocation").on("click",function(){
           document.getElementById('iw-website-row').style.display = 'none';
         }
       }
-
-
-
-
-//***************** START CODING FOR SQOOT API *******************
-
-//Users can see Sqoot's offerings in two ways:
-//when a user types a city name into the map's search bar, use that city for sqoot's query
-//OR
-//===========================================================================================
-
-
-
-//=============== Global Variabls ===============================
-
-var deals; // shows Sqoot's API parameter for a deal, including some of its sub-information
-var image; // shows Sqoot's API image parameter (shows an image related to the deal)
-var inputCity = "Orlando"; // city deals default to Orlando, FL on page load
-
-// When the page loads, the div holding Sqoot's information should be empty
-$('#dealsFromSquoot').empty();
-
-// Ajax call to Sqoot API
-// this first call populates the Sqoot Deals div
-var queryURL = 'http://api.sqoot.com/v2/deals?api_key=39zxwo4hbW89U737y87p&query=' + inputCity + '&radius=10';
-console.log(queryURL);
-
-// this function inserts the search box input from Google as the target for Sqoot's API query
-function callCity(tempCity, category) {
-
-  queryURL = 'http://api.sqoot.com/v2/deals?api_key=39zxwo4hbW89U737y87p&query=' + tempCity + '&radius=10';
-
-  $.ajax ({
-  url: queryURL,
-  method: 'GET'
-  })
-  
-  .done(function(response) {
-    // these variables will hold the 5 deals for each city; their contents will change as the city changes
-    var results = [];
-    var image = [];
-    var responseHTML = "";
-
-    // Get 5 results and their related images from Sqoot
-    for (var i = 0; i < 5; i++) {
-
-      if (response.deals[i] != null) {
-
-    // push the first 5 queries into the arrays
-    results.push(response.deals[i].deal.title);
-    image.push(response.deals[i].deal.image_url);
-
-      }
-    }
-
-
-    // for every query reply, a div with the class responseDIV is made, inside that div is the image and title
-    for (i = 0; i < 5; i++) {
-
-        responseHTML = responseHTML + "<div class='responseDIV'>";
-        responseHTML = responseHTML + "<img src='" + image[i] + "' class='responseIMAGE'/>";
-        responseHTML = responseHTML + "<p class='responseTEXT'>" + results[i] + "</p>";
-        responseHTML = responseHTML + "</div>";
-    }
-    //make the results appear on the HTML page
-    $('#dealsFromSqoot').html(responseHTML);
-
-  });
-
-};
-
-// ============== Begin code for linking Sqoot query by category ======================================
-//var catButtons = document.getElementsByClassName("btn btn-default btn-lg");
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfjDeIgIBM1FumpRj68zq9Soze0RL2odM
+&libraries=places&callback=initMap"
+        async defer></script>
+  </body>
+</html>
