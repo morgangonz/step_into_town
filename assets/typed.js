@@ -96,7 +96,7 @@
 
 			, build: function(){
 				// Insert cursor
-				this.el.after("<span id=\"typed-cursor\">|</span>");
+				this.el.after("");
 				this.init();
 			}
 
@@ -241,7 +241,7 @@ $(function(){
         			"Explore the town's history and learn something new.",
         			"Save money and use our DEALS feature!",
         		],	
-        		
+
         typeSpeed: 0
         });
     });
