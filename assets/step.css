@@ -1,29 +1,35 @@
-@import url('https://fonts.googleapis.com/css?family=Dancing+Script:400,700|Poiret+One&subset=cyrillic,latin-ext');
 
 .jumbotron {
-	margin-left:10px;
-	margin-right:10px;
-	background-image: url("../images/walking_population.png");
+	
+	background-image: url("../images/people_walking.jpeg");
 	color: white;
-	border-radius: 5px;
 	font-family: 'Satisfy', cursive;
 	text-align: center;
-	margin-bottom:0px;
+	
+	display: table;
+    position: relative;
+    width: 100%;
+    height: 650px;
+    
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
 
 }
 #header {
 	font-size:75px;
-	text-shadow: 3px 3px #4286f4;
+	text-shadow: 3px 3px #00ADEF;
 }
 #subhead {
 	font-size:30px;
-	text-shadow: 1px 1px #4286f4;
+	text-shadow: 1px 1px #00ADEF;
 }
 #startStep {
 	background-color:white;
 	opacity:.8;
 	border-radius: 5px;
-	font-family: 'Josefin Slab', serif;
+	font-family: 'Kalam', cursive;
 	font-size:18px;
 }
 #about {
@@ -31,12 +37,18 @@
 	padding-bottom:50px;
 	margin-top:0px;
 	color: black;
-	background-color: #edf2f9;
+	background-color: white;
+	height: 140px;
 
 }
+.element {
+	color:#00ADEF;
+	margin-top:80px;
+}
+
 .lead {
 	font-family: 'Kalam', cursive;
-	font-size: 16px;
+	font-size: 30px;
 	
 }
 
@@ -49,7 +61,7 @@
 
 .btns {
 	display:inline;
-	background-color: #4286f4;
+	background-color: #00ADEF;
 	border: none;
 	border-radius: 100px;
 	height:110px;
@@ -64,12 +76,12 @@
 }
 
 .btns:focus {
-	background-color:#425D8A;
+	background-color:grey;
 }
 
 
 .container2 {
-	background-color: #4286f4;
+	background-color: #00ADEF;
 	width:100%;
 	height:350px;
 	text-align:center;
@@ -104,12 +116,17 @@
 /*************  Map css  *****************/
 
 .container3 {
-	background-image: url("../images/footprints.png");
+	height:140px;
 	padding-bottom: 5%;
+
 }
 
 h3{
-	font-family: 'Josefin Slab', serif;
+	font-family: 'Kalam', cursive;
+
+}
+#wru {
+	color:#00ADEF;
 }
 
 #currentLocation{
@@ -118,9 +135,9 @@ h3{
 	width: 150px;
 	background-color: rgba(255,255,255,0.8);
 	border-radius: 5px;
-	font-family: 'Josefin Slab', serif;
+	font-family: 'Kalam', cursive;
 	font-size:18px;
-	color: #416ef4;
+	color: #00ADEF;
 }
 
 .controls {
@@ -134,7 +151,7 @@ h3{
 
 #pac-input {
   background-color: #fff;
-  font-family: 'Josefin Slab', serif;
+  font-family: 'Kalam', cursive;
   font-size: 18px;
   font-weight: 300;
   text-align: center;
@@ -142,7 +159,7 @@ h3{
   width: 200px;
   height: 40px;
   margin-top: 10px;	
-  margin-left: 10px;
+  margin-right: 15px;
   border-radius: 5px;
 }
 
@@ -151,7 +168,8 @@ h3{
 }
 
 .pac-container {
-  font-family: 'Josefin Slab', serif;
+  font-family: 'Kalam', cursive;
+ 
 }
 
 #type-selector {
@@ -161,7 +179,7 @@ h3{
 }
 
 #type-selector label {
-  font-family: 'Josefin Slab', serif;
+  font-family: 'Kalam', cursive;
   font-size: 13px;
   font-weight: 300;
 }
@@ -173,7 +191,7 @@ h3{
 #result{
 	font-size: 20px;
 	text-align: center;
-	font-family: 'Josefin Slab', serif;
+	font-family: 'Kalam', cursive;
 }
 
 #map {
@@ -190,7 +208,7 @@ h3{
   position-top: -200px;
   width: 1050px;
   padding-bottom: 20px;
-  font-family: 'Josefin Slab', serif;
+  font-family: 'Kalam', cursive;
   font-size: 15px;
 }
 
