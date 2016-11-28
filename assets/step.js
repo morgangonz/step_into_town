@@ -1,24 +1,24 @@
 //******  icon click function  *******//
-$("#active").on("click",function(){
-  console.log("hi");
+$('#activities').on('click',function(){
+  search('movie_theater');
 });
-$("#food").on("click",function(){
-  console.log("hi");
+$('#food').on('click',function(){
+  search('restaurant');
 });
-$("#drinks").on("click",function(){
-  console.log("hi");
+$('#drinks').on('click',function(){
+  search('night_club');
 });
-$("#shopping").on("click",function(){
-  console.log("hi");
+$('#shopping').on('click',function(){
+  search('shopping_mall');
 });
-$("#parks").on("click",function(){
-  console.log("hi");
+$('#parks').on('click',function(){
+  search('park');
 });
-$("#museums").on("click",function(){
-  console.log("hi");
+$('#museums').on('click',function(){
+  search('museum');
 });
-$("#deals").on("click",function(){
-  console.log("hi");
+$('#deals').on('click',function(){
+
 });
 
 //*************  Google Map  *************//   
@@ -40,8 +40,12 @@ $("#deals").on("click",function(){
           zoom: 3
         },
         'ca': {
-          center: {lat: 62, lng: -110.0},
+          center: {lat: 62, lng: -80.0},
           zoom: 3
+        },
+        'cn': {
+          center: {lat: 35.8, lng: 104.1},
+          zoom: 4
         },
         'fr': {
           center: {lat: 46.2, lng: 2.2},
@@ -49,6 +53,14 @@ $("#deals").on("click",function(){
         },
         'de': {
           center: {lat: 51.2, lng: 10.4},
+          zoom: 5
+        },
+        'jp': {
+          center: {lat: 37.5, lng: 138.2},
+          zoom: 5
+        },
+        'my': {
+          center: {lat: 4.2, lng: 101.9},
           zoom: 5
         },
         'mx': {
@@ -82,7 +94,7 @@ $("#deals").on("click",function(){
         'uk': {
           center: {lat: 54.8, lng: -4.6},
           zoom: 5
-        }
+        },
       };
 
       function initMap() {
@@ -130,11 +142,11 @@ $("#deals").on("click",function(){
         }
       }
 
-      // Search for hotels in the selected city, within the viewport of the map.
-      function search() {
+      // Search for activities in the selected city, within the viewport of the map.
+      function search(x) {
         var search = {
           bounds: map.getBounds(),
-          types: ['lodging']
+          types: [x]
         };
 
         places.nearbySearch(search, function(results, status) {
@@ -161,6 +173,7 @@ $("#deals").on("click",function(){
             }
           }
         });
+        $("#autocomplete").val("");
       }
 
       function clearMarkers() {
@@ -178,7 +191,7 @@ $("#deals").on("click",function(){
         var country = document.getElementById('country').value;
         if (country == 'all') {
           autocomplete.setComponentRestrictions([]);
-          map.setCenter({lat: 15, lng: 0});
+          map.setCenter({lat: 30.463426, lng: -3.558594});
           map.setZoom(2);
         } else {
           autocomplete.setComponentRestrictions({'country': country});
@@ -201,7 +214,7 @@ $("#deals").on("click",function(){
         var markerIcon = MARKER_PATH + markerLetter + '.png';
 
         var tr = document.createElement('tr');
-        tr.style.backgroundColor = (i % 2 === 0 ? '#F0F0F0' : '#FFFFFF');
+        tr.style.backgroundColor = (i % 2 === 0 ? '#d0e1fb' : '#FFFFFF');
         tr.onclick = function() {
           google.maps.event.trigger(markers[i], 'click');
         };
@@ -243,7 +256,7 @@ $("#deals").on("click",function(){
 
       // Load the place information into the HTML elements used by the info window.
       function buildIWContent(place) {
-        document.getElementById('iw-icon').innerHTML = '<img class="hotelIcon" ' +
+        document.getElementById('iw-icon').innerHTML = '<img class="searchIcon" ' +
             'src="' + place.icon + '"/>';
         document.getElementById('iw-url').innerHTML = '<b><a href="' + place.url +
             '">' + place.name + '</a></b>';
@@ -285,7 +298,7 @@ $("#deals").on("click",function(){
             fullUrl = website;
           }
           document.getElementById('iw-website-row').style.display = '';
-          document.getElementById('iw-website').textContent = website;
+          document.getElementById('iw-website').textContent =  website;
         } else {
           document.getElementById('iw-website-row').style.display = 'none';
         }
