@@ -1,0 +1,68 @@
+body {
+    background-image: url("https://images.freecreatives.com/wp-content/uploads/2016/03/Stunning-Pokemon-Ball-HD-Background.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    }
+    .btn, #addDance {
+        background-color: #00b3b3;
+        color: white;
+
+    }
+
+    .btn {
+        text-align: center;
+    }
+
+    img {
+        width: 200px;
+        height: 100px;
+    }
+    button, div, form, input {
+            margin: 2px;
+        }
+
+        .btn:hover{
+            background-color: green;
+
+        }
+
+        img:hover {
+            border: 1px solid #ffcccc ;
+        }
+
+        .jumbotron {
+            background-color: #800060;
+            opacity: .9;
+            margin-top: 10px;
+
+
+        }
+
+        span:hover + .jumbotron {
+        display: block;
+            }
+
+         .item {
+            
+            margin: 4px;
+
+        }
+
+        #gifsAppearHere{
+            color: #ffcccc;
+            font-weight: 23px;
+            font-weight: bold;
+            
+        }
+
+        #item{
+            margin: 40px;
+
+        }
+        label {
+        color: white;
+        font-weight: bolder;
+
+        }
