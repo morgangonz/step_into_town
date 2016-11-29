@@ -1,6 +1,6 @@
 //******  icon click function  *******//
 $('#activities').on('click',function(){
-  search('movie_theater');
+  search('gym');
 });
 $('#food').on('click',function(){
   search('restaurant');
@@ -18,18 +18,20 @@ $('#museums').on('click',function(){
   search('museum');
 });
 $('#deals').on('click',function(){
+  sqoot();
 
 });
 
-//*************  Google Map  *************//   
+//*************  Google Map  *************//
 
- var map, places, infoWindow;
+      var map, places, infoWindow;
       var markers = [];
       var autocomplete;
       var countryRestrict = {'country': 'us'};
       var MARKER_PATH = 'https://developers.google.com/maps/documentation/javascript/images/marker_green';
       var hostnameRegexp = new RegExp('^https?://.+?/');
 
+      //When the user selects a country, set center and zoom the country on the map.
       var countries = {
         'au': {
           center: {lat: -25.3, lng: 133.8},
@@ -97,6 +99,7 @@ $('#deals').on('click',function(){
         },
       };
 
+      //map style
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 30.463426, lng: -3.558594},
@@ -106,8 +109,10 @@ $('#deals').on('click',function(){
           zoomControl: false,
           streetViewControl: false,
           zoom: 2
-        });
 
+
+        });
+        //shops information
         infoWindow = new google.maps.InfoWindow({
           content: document.getElementById('info-content')
         });
@@ -137,12 +142,33 @@ $('#deals').on('click',function(){
           map.panTo(place.geometry.location);
           map.setZoom(15);
           search();
-        } else {
-          document.getElementById('autocomplete').placeholder = 'Enter a city';
+        } 
+        else{
+            var tempCity = places[0].formatted_address;
+        // this tells js to look for teh first comma in the string for formatted_address. It then takes whatever is in front of it (the zero index after the split)
+        tempCity = tempCity.split(",")[0];
+        console.log("this is" + tempCity);
+        // run ajax call to Sqoot API
+        callCity(tempCity);
+
         }
       }
+        // =============== Begin code to link Goolge city input to Sqoot API ===========================================
+        // look inside Google API object for name of city that user typed
+        // function sqoot() {
+        //   var tempCity = places[0].formatted_address;
+        // // this tells js to look for teh first comma in the string for formatted_address. It then takes whatever is in front of it (the zero index after the split)
+        // tempCity = tempCity.split(",")[0];
+        // console.log("this is" + tempCity);
+        // // run ajax call to Sqoot API
+        // callCity(tempCity);
 
-      // Search for activities in the selected city, within the viewport of the map.
+        // }
+        
+        // ================= End code to link Google city input to Sqoot API ==========================================
+      
+
+      // Search for all buttons activities in the selected city, within the viewport of the map.
       function search(x) {
         var search = {
           bounds: map.getBounds(),
@@ -153,7 +179,7 @@ $('#deals').on('click',function(){
           if (status === google.maps.places.PlacesServiceStatus.OK) {
             clearResults();
             clearMarkers();
-            // Create a marker for each hotel found, and
+            // Create a marker for each place found, and
             // assign a letter of the alphabetic to each marker icon.
             for (var i = 0; i < results.length; i++) {
               var markerLetter = String.fromCharCode('A'.charCodeAt(0) + (i % 26));
@@ -164,7 +190,7 @@ $('#deals').on('click',function(){
                 animation: google.maps.Animation.DROP,
                 icon: markerIcon
               });
-              // If the user clicks a hotel marker, show the details of that hotel
+              // If the user clicks a marker, show the details of that hotel
               // in an info window.
               markers[i].placeResult = results[i];
               google.maps.event.addListener(markers[i], 'click', showInfoWindow);
@@ -191,7 +217,7 @@ $('#deals').on('click',function(){
         var country = document.getElementById('country').value;
         if (country == 'all') {
           autocomplete.setComponentRestrictions([]);
-          map.setCenter({lat: 30.463426, lng: -3.558594});
+          map.setCenter({lat: 20.463426, lng: -3.558594});
           map.setZoom(2);
         } else {
           autocomplete.setComponentRestrictions({'country': country});
@@ -208,11 +234,13 @@ $('#deals').on('click',function(){
         };
       }
 
+      //marker design
       function addResult(result, i) {
         var results = document.getElementById('results');
         var markerLetter = String.fromCharCode('A'.charCodeAt(0) + (i % 26));
         var markerIcon = MARKER_PATH + markerLetter + '.png';
 
+        //border color design
         var tr = document.createElement('tr');
         tr.style.backgroundColor = (i % 2 === 0 ? '#d0e1fb' : '#FFFFFF');
         tr.onclick = function() {
@@ -357,7 +385,6 @@ function callCity(tempCity, category) {
 
       }
     }
-
 
     // for every query reply, a div with the class responseDIV is made, inside that div is the image and title
     for (i = 0; i < 5; i++) {
