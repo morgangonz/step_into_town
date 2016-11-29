@@ -1,7 +1,8 @@
 
+
 .jumbotron {
 	
-	background-image: url("../images/people_walking.jpeg");
+	background-image: url("../images/blurred-people.jpg");
 	color: white;
 	font-family: 'Satisfy', cursive;
 	text-align: center;
@@ -20,6 +21,7 @@
 #header {
 	font-size:75px;
 	text-shadow: 3px 3px #00ADEF;
+	margin-top:200px;
 }
 #subhead {
 	font-size:30px;
@@ -29,16 +31,17 @@
 	background-color:white;
 	opacity:.8;
 	border-radius: 5px;
-	font-family: 'Kalam', cursive;
-	font-size:18px;
+	font-family: 'Satisfy', cursive;
+	font-size:20px;
 }
 #about {
 	padding-top: 30px;
 	padding-bottom:50px;
 	margin-top:0px;
-	color: black;
 	background-color: white;
 	height: 140px;
+	color: #00ADEF;
+	
 
 }
 .element {
