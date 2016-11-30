@@ -23,13 +23,13 @@
 #header {
 	font-size:75px;
 	text-shadow: 3px 3px #00ADEF;
-	margin-top:200px;
+	margin-top:150px;
 }
 #subhead {
-	font-size:30px;
+	font-size:25px;
 	text-shadow: 1px 1px #00ADEF;
 }
-#startStep {
+.startStep {
 	background-color:white;
 	opacity:.8;
 	border-radius: 5px;
@@ -37,16 +37,10 @@
 	font-size:18px;
 	font-family: 'Satisfy', cursive;
 	font-size:20px;
-
-}
-#about {
-	padding-top: 30px;
-	padding-bottom:50px;
-	margin-top:0px;
+	margin-left:30%;
 	background-color: white;
 	height: 140px;
 	color: #00ADEF;
-	
 
 }
 .element {
@@ -122,12 +116,13 @@
 
 }
 
-h3{
-	font-family: 'Kalam', cursive;
 
-}
-#wru {
-	color:#00ADEF;
+
+#typed-strings {
+	background-color:white;
+	opacity:.7;
+	margin-top:60px;
+
 }
 
 .search {

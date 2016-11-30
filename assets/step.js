@@ -145,7 +145,6 @@ $('#deals').on('click',function(){
 
         //border color design
         var tr = document.createElement('tr');
-        tr.style.backgroundColor = (i % 2 === 0 ? '#d0e1fb' : '#FFFFFF');
         tr.onclick = function() {
           google.maps.event.trigger(markers[i], 'click');
         };
@@ -157,11 +156,7 @@ $('#deals').on('click',function(){
         icon.setAttribute('class', 'placeIcon');
         icon.setAttribute('className', 'placeIcon');
         var name = document.createTextNode(result.name);
-        iconTd.appendChild(icon);
-        nameTd.appendChild(name);
-        tr.appendChild(iconTd);
-        tr.appendChild(nameTd);
-        results.appendChild(tr);
+        
       }
 
       function clearResults() {
