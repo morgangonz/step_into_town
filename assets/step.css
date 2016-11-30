@@ -52,14 +52,11 @@
 .lead {
 	font-family: 'Kalam', cursive;
 	font-size: 30px;
-	
 }
 
 #services {
 	color: #edf2f9;
 	margin-top:8px;
-
-
 }
 
 .btns {
@@ -71,7 +68,6 @@
 	width:100px;
 	font-weight:bold;
 	margin-top:15px;
-
 }
 
 .btns:hover {
@@ -96,8 +92,6 @@
 	height:100px;
 	font-size:12px;
 	padding-right:8px;
-
-
 }
 
  .nav:hover {
@@ -111,7 +105,6 @@
 .icon {
 	max-width:30px;
 	max-height:30px;
-	padding-bottom: 30px;
 }
 
 
@@ -132,27 +125,40 @@ h3{
 	color:#00ADEF;
 }
 
-#currentLocation{
-	margin:10px 0px 0px 10px;
+.search {
+	border: 1px solid transparent;
+	border-radius: 2px 0 0 2px;
+	box-sizing: border-box;
+	height: 32px;
+	outline: none;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+}
+
+#autocomplete {
+	background-color: #fff;
+	font-family: 'Kalam', cursive;
+	font-size: 18px;
+	font-weight: 300;
+	text-align: center;
+	padding: 0 11px 0 13px;
+	width: 210px;
 	height: 40px;
-	width: 150px;
-	background-color: rgba(255,255,255,0.8);
+	margin-top: 10px;
 	border-radius: 5px;
+	margin-right: 14%;
 	font-family: 'Kalam', cursive;
 	font-size:18px;
 	color: #00ADEF;
 }
 
-.controls {
-  border: 1px solid transparent;
-  border-radius: 2px 0 0 2px;
-  box-sizing: border-box;
-  height: 32px;
-  outline: none;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+#autocomplete:focus {
+	border-color: #4d90fe;
 }
 
-#pac-input {
+.pac-container {
+  	font-family: 'Kalam', cursive;
+}
+#pac-input{
   background-color: #fff;
   font-family: 'Kalam', cursive;
   font-size: 18px;
@@ -166,19 +172,29 @@ h3{
   border-radius: 5px;
 }
 
-#pac-input:focus {
-  border-color: #4d90fe;
+#controls {
+	margin-left: 53%;
+	margin-top: -2.7%;
+    text-align: center;
+	height: 40px;
+	width: 150px;
+	background-color: rgba(255,255,255,0.8);
+	border-radius: 5px;
+	font-family: 'Josefin Slab', serif;
+	color: #416ef4;
 }
 
-.pac-container {
-  font-family: 'Kalam', cursive;
- 
+#country {
+	width: 100%;
+    height: 35px;
+    font-size:18px;
 }
+
 
 #type-selector {
-  color: #fff;
-  background-color: #4d90fe;
-  padding: 5px 11px 0px 11px;
+	color: #fff;
+	background-color: #4d90fe;
+	padding: 5px 11px 0px 11px;
 }
 
 #type-selector label {
@@ -186,6 +202,7 @@ h3{
   font-size: 13px;
   font-weight: 300;
 }
+
 .container4{
 	padding-bottom: rgba(0, 153, 255,0.9);
 	margin-bottom: 200px;
@@ -197,10 +214,56 @@ h3{
 	font-family: 'Kalam', cursive;
 }
 
-#map {
-  height: 550px;
-  width: 100%;
+#listing {
+    position: absolute;
+    width: 230px;
+    height: 470px;
+    overflow: auto;
+    right: 0px;
+    margin-top: 0%;
+    z-index: 5;
+    cursor: pointer;
+    overflow-x: hidden;
+    font-family: 'Josefin Slab', serif;
+}
 
+#map {
+  	height: 550px;
+  	width: 100%;
+}
+
+.placeIcon {
+	width: 20px;
+	height: 34px;
+	margin: 4px;
+}
+
+.searchIcon {
+	width: 24px;
+	height: 24px;
+}
+
+#resultsTable {
+    border-collapse: collapse;
+    width: 240px;
+}
+
+#rating {
+	font-size: 13px;
+	font-family: Arial Unicode MS;
+}
+
+.iw_table_row {
+	height: 18px;
+}
+
+.iw_attribute_name {
+	font-weight: bold;
+	text-align: right;
+}
+
+.iw_table_icon {
+	text-align: right;
 }
 
 
