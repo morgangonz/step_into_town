@@ -4,7 +4,7 @@
 
       //This script was removed from line 33 of the larger step.js file.
       // look inside Google API object for name of city that user typed
-      } else {
+       else {
       var tempCity = places[0].formatted_address;
      // this tells js to look for teh first comma in the string for formatted_address. It then takes whatever is in front of it (the zero index after the split)
       tempCity = tempCity.split(",")[0];
