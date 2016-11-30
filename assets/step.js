@@ -31,73 +31,7 @@ $('#deals').on('click',function(){
       var MARKER_PATH = 'https://developers.google.com/maps/documentation/javascript/images/marker_green';
       var hostnameRegexp = new RegExp('^https?://.+?/');
 
-      //When the user selects a country, set center and zoom the country on the map.
-      var countries = {
-        'au': {
-          center: {lat: -25.3, lng: 133.8},
-          zoom: 4
-        },
-        'br': {
-          center: {lat: -14.2, lng: -51.9},
-          zoom: 3
-        },
-        'ca': {
-          center: {lat: 62, lng: -80.0},
-          zoom: 3
-        },
-        'cn': {
-          center: {lat: 35.8, lng: 104.1},
-          zoom: 4
-        },
-        'fr': {
-          center: {lat: 46.2, lng: 2.2},
-          zoom: 5
-        },
-        'de': {
-          center: {lat: 51.2, lng: 10.4},
-          zoom: 5
-        },
-        'jp': {
-          center: {lat: 37.5, lng: 138.2},
-          zoom: 5
-        },
-        'my': {
-          center: {lat: 4.2, lng: 101.9},
-          zoom: 5
-        },
-        'mx': {
-          center: {lat: 23.6, lng: -102.5},
-          zoom: 4
-        },
-        'nz': {
-          center: {lat: -40.9, lng: 174.9},
-          zoom: 5
-        },
-        'it': {
-          center: {lat: 41.9, lng: 12.6},
-          zoom: 5
-        },
-        'za': {
-          center: {lat: -30.6, lng: 22.9},
-          zoom: 5
-        },
-        'es': {
-          center: {lat: 40.5, lng: -3.7},
-          zoom: 5
-        },
-        'pt': {
-          center: {lat: 39.4, lng: -8.2},
-          zoom: 6
-        },
-        'us': {
-          center: {lat: 37.1, lng: -95.7},
-          zoom: 3
-        },
-        'uk': {
-          center: {lat: 54.8, lng: -4.6},
-          zoom: 5
-        },
-      };
+
 
       //map style
       function initMap() {
@@ -129,10 +63,8 @@ $('#deals').on('click',function(){
 
         autocomplete.addListener('place_changed', onPlaceChanged);
 
-        // Add a DOM event listener to react when the user selects a country.
-        document.getElementById('country').addEventListener(
-            'change', setAutocompleteCountry);
-      }
+      } 
+ 
 
       // When the user selects a city, get the place details for the city and
       // zoom the map in on the city.
@@ -142,32 +74,18 @@ $('#deals').on('click',function(){
           map.panTo(place.geometry.location);
           map.setZoom(15);
           search();
-        } 
-        else{
+
+          else {
             var tempCity = places[0].formatted_address;
-        // this tells js to look for teh first comma in the string for formatted_address. It then takes whatever is in front of it (the zero index after the split)
-        tempCity = tempCity.split(",")[0];
-        console.log("this is" + tempCity);
-        // run ajax call to Sqoot API
-        callCity(tempCity);
-
+            // this tells js to look for teh first comma in the string for formatted_address. It then takes whatever is in front of it (the zero index after the split)
+            tempCity = tempCity.split(",")[0];
+            console.log("this is" + tempCity);
+            // run ajax call to Sqoot API
+            inputCity = tempCity;
+            callCity(tempCity, "default");
         }
-      }
-        // =============== Begin code to link Goolge city input to Sqoot API ===========================================
-        // look inside Google API object for name of city that user typed
-        // function sqoot() {
-        //   var tempCity = places[0].formatted_address;
-        // // this tells js to look for teh first comma in the string for formatted_address. It then takes whatever is in front of it (the zero index after the split)
-        // tempCity = tempCity.split(",")[0];
-        // console.log("this is" + tempCity);
-        // // run ajax call to Sqoot API
-        // callCity(tempCity);
-
-        // }
+      }  
         
-        // ================= End code to link Google city input to Sqoot API ==========================================
-      
-
       // Search for all buttons activities in the selected city, within the viewport of the map.
       function search(x) {
         var search = {
@@ -212,23 +130,6 @@ $('#deals').on('click',function(){
         markers = [];
       }
 
-
-      // Set the country restriction based on user input.
-      // Also center and zoom the map on the given country.
-      function setAutocompleteCountry() {
-        var country = document.getElementById('country').value;
-        if (country == 'all') {
-          autocomplete.setComponentRestrictions([]);
-          map.setCenter({lat: 20.463426, lng: -3.558594});
-          map.setZoom(2);
-        } else {
-          autocomplete.setComponentRestrictions({'country': country});
-          map.setCenter(countries[country].center);
-          map.setZoom(countries[country].zoom);
-        }
-        clearResults();
-        clearMarkers();
-      }
 
       function dropMarker(i) {
         return function() {
@@ -351,19 +252,21 @@ $('#deals').on('click',function(){
 var deals; // shows Sqoot's API parameter for a deal, including some of its sub-information
 var image; // shows Sqoot's API image parameter (shows an image related to the deal)
 var inputCity = "Orlando"; // city deals default to Orlando, FL on page load
+var defaultCategory = "default";
 
 // When the page loads, the div holding Sqoot's information should be empty
 $('#dealsFromSquoot').empty();
 
 // Ajax call to Sqoot API
 // this first call populates the Sqoot Deals div
-var queryURL = 'http://api.sqoot.com/v2/deals?api_key=39zxwo4hbW89U737y87p&query=' + inputCity + '&radius=10';
+var queryURL = 'http://api.sqoot.com/v2/deals?api_key=39zxwo4hbW89U737y87p&query=' + inputCity + '&radius=10&per_page=35';
 console.log(queryURL);
 
 // this function inserts the search box input from Google as the target for Sqoot's API query
 function callCity(tempCity, category) {
 
-  queryURL = 'http://api.sqoot.com/v2/deals?api_key=39zxwo4hbW89U737y87p&query=' + tempCity + '&radius=10';
+  defaultCategory = category;
+  queryURL = 'http://api.sqoot.com/v2/deals?api_key=39zxwo4hbW89U737y87p&query=' + inputCity + '&radius=10&per_page=35';
 
   $.ajax ({
   url: queryURL,
@@ -375,33 +278,106 @@ function callCity(tempCity, category) {
     var results = [];
     var image = [];
     var responseHTML = "";
+    var slugs = [];
+    var dealURL = [];
 
     // Get 5 results and their related images from Sqoot
-    for (var i = 0; i < 5; i++) {
+    for (var i = 0; i < 35; i++) {
 
       if (response.deals[i] != null) {
 
+
+        if (defaultCategory == "default") {
+          results.push(response.deals[i].deal.title);
+          image.push(response.deals[i].deal.image_url);
+          dealURL.push(response.deals[i].deal.untracked_url);
+        }
+
+
+          else if (category.indexOf(",") != -1) {
+            slugs = category.split(",");
+          }
+
+          if (slugs.length >= 1) {
+            for (var j = 0; j < slugs.length; j++) {
+              if (response.deals[i].deal.category_slug == slugs[j]) {
+                results.push(response.deals[i].deal.title);
+                image.push(response.deals[i].deal.image_url);
+                dealURL.push(response.deals[i].deal.untracked_url);
+              }
+            }
+          }
+
+          else if (response.deals[i].deal.category_slug == category) {
+
+
     // push the first 5 queries into the arrays
-    results.push(response.deals[i].deal.title);
-    image.push(response.deals[i].deal.image_url);
+        results.push(response.deals[i].deal.title);
+        image.push(response.deals[i].deal.image_url);
+        dealURL.push(response.deals[i].deal.untracked_url);
+        }
+      }
 
       }
-    }
 
     // for every query reply, a div with the class responseDIV is made, inside that div is the image and title
-    for (i = 0; i < 5; i++) {
+    for (i = 0; i < results.length; i++) {
 
-        responseHTML = responseHTML + "<div class='responseDIV'>";
+        responseHTML = responseHTML + "<a href='" + dealURL[i] + "'><div class='responseDIV'>";
         responseHTML = responseHTML + "<img src='" + image[i] + "' class='responseIMAGE'/>";
         responseHTML = responseHTML + "<p class='responseTEXT'>" + results[i] + "</p>";
-        responseHTML = responseHTML + "</div>";
+        responseHTML = responseHTML + "</div></a>";
     }
     //make the results appear on the HTML page
     $('#dealsFromSqoot').html(responseHTML);
 
+    slugs.length = 0;
   });
 
 };
 
 // ============== Begin code for linking Sqoot query by category ======================================
-//var catButtons = document.getElementsByClassName("btn btn-default btn-lg");
+
+$('#food').click(function() {
+
+  $('.responseDIV').empty();
+
+ callCity(inputCity, "food-grocery,food_alcohol,restaurants,kosher,dining-nightlife");
+
+});
+
+$('#activities').click(function() {
+   $('.responseDIV').empty();
+
+ callCity(inputCity, "fitness,gym,activities-events,bowling,city-tours,comedy-clubs,concerts");
+});
+
+$('#drinks').click(function() {
+   $('.responseDIV').empty();
+
+ callCity(inputCity, "food_alcohol,bars-clubs,dining-nightlife,wine-tasting");
+});
+
+$('#shopping').click(function() {
+   $('.responseDIV').empty();
+
+ callCity(inputCity, "fashion_accessories,home_goods,luggage,gifts,kitchen,women_fashion,womens-clothing,special-interest,retail-services,movies_music_games,mens-clothing,mens_fashion");
+});
+
+$('#parks').click(function() {
+   $('.responseDIV').empty();
+
+ callCity(inputCity, "outdoor-adventures,city-tours,golf,skiing,skydiving,yoga");
+});
+
+$('#museums').click(function() {
+   $('.responseDIV').empty();
+
+ callCity(inputCity, "museums");
+});
+
+$('#dealDefault').click(function() {
+   $('.responseDIV').empty();
+
+ callCity(inputCity, "default");
+});
