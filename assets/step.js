@@ -1,4 +1,8 @@
 
+
+
+
+
   //*******  Google Map  *******//    
   function initAutocomplete() {
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -10,6 +14,7 @@
 
     // Create the search box and link it to the UI element.
     var input = document.getElementById('pac-input');
+
     var searchBox = new google.maps.places.SearchBox(input);
 
 
@@ -25,9 +30,25 @@
     // more details for that place.
     searchBox.addListener('places_changed', function() {
       var places = searchBox.getPlaces();
+      console.log(places);
+
+      //variable set to store input from search box
+
+      //THIS WAS ADDED TODAY< TUESDAY
+
+      var b = $("input").val().trim();
+      //THIS WAS ADDED TODAY< TUESDAY
+       //stores the input in session
+      sessionStorage.setItem("location", b);
+      //THIS WAS ADDED TODAY< TUESDAY
+      
+      return false;
+      
 
       if (places.length == 0) {
         return;
+
+
 
 // =============== Begin code to link Goolge city input to Sqoot API ===========================================
       // look inside Google API object for name of city that user typed
@@ -40,6 +61,8 @@
       callCity(tempCity);
 
       }
+
+     
 // ================= End code to link Google city input to Sqoot API ==========================================
 
       // Clear out the old markers.
@@ -118,6 +141,9 @@ function callCity(tempCity, category) {
   })
   
   .done(function(response) {
+
+
+
 
     // these variables will hold the 5 deals for each city; their contents will change as the city changes
     var results = [];
