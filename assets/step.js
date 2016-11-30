@@ -1,24 +1,59 @@
 //******  icon click function  *******//
-$('#activities').on('click',function(){
+$('#active').on('click',function(){
   search('gym');
+
+     $('.responseDIV').empty();
+
+ callCity(inputCity, "fitness,martial-arts,gym,activities-events,bowling,city-tours,comedy-clubs,concerts");
 });
+
 $('#food').on('click',function(){
   search('restaurant');
+
+  $('.responseDIV').empty();
+
+ callCity(inputCity, "food-grocery,food_alcohol,restaurants,kosher,dining-nightlife");
+
 });
+
 $('#drinks').on('click',function(){
   search('night_club');
+
+     $('.responseDIV').empty();
+
+ callCity(inputCity, "food_alcohol,bars-clubs,dining-nightlife,wine-tasting");
+
 });
+
 $('#shopping').on('click',function(){
   search('shopping_mall');
+
+   $('.responseDIV').empty();
+
+ callCity(inputCity, "fashion_accessories,home_goods,luggage,gifts,kitchen,women_fashion,womens-clothing,special-interest,retail-services,movies_music_games,mens-clothing,mens_fashion");
+
 });
+
 $('#parks').on('click',function(){
   search('park');
+
+     $('.responseDIV').empty();
+
+ callCity(inputCity, "outdoor-adventures,city-tours,golf,skiing,skydiving,yoga");
+
 });
+
 $('#museums').on('click',function(){
   search('museum');
+     $('.responseDIV').empty();
+
+ callCity(inputCity, "museums");
 });
+
 $('#deals').on('click',function(){
-  sqoot();
+  $('.responseDIV').empty();
+
+ callCity(inputCity, "default");
 
 });
 
@@ -70,16 +105,22 @@ $('#deals').on('click',function(){
       // zoom the map in on the city.
       function onPlaceChanged() {
         var place = autocomplete.getPlace();
+
+
         if (place.geometry) {
           map.panTo(place.geometry.location);
           map.setZoom(15);
           search();
+
+           var tempCity = place.name;
+           inputCity = tempCity;
+            callCity(tempCity, "default");
         }
           else {
-            var tempCity = places[0].formatted_address;
+            var tempCity = place.name;
             // this tells js to look for teh first comma in the string for formatted_address. It then takes whatever is in front of it (the zero index after the split)
-            tempCity = tempCity.split(",")[0];
-            console.log("this is" + tempCity);
+            //tempCity = tempCity.split(",")[0];
+            //console.log("this is" + tempCity);
             // run ajax call to Sqoot API
             inputCity = tempCity;
             callCity(tempCity, "default");
@@ -95,7 +136,7 @@ $('#deals').on('click',function(){
 
         places.nearbySearch(search, function(results, status) {
           if (status === google.maps.places.PlacesServiceStatus.OK) {
-            clearResults();
+
             clearMarkers();
             // Create a marker for each place found, and
             // assign a letter of the alphabetic to each marker icon.
@@ -157,13 +198,6 @@ $('#deals').on('click',function(){
         icon.setAttribute('className', 'placeIcon');
         var name = document.createTextNode(result.name);
         
-      }
-
-      function clearResults() {
-        var results = document.getElementById('results');
-        while (results.childNodes[0]) {
-          results.removeChild(results.childNodes[0]);
-        }
       }
 
       // Get the place details for a hotel. Show the information in an info window,
@@ -332,47 +366,3 @@ function callCity(tempCity, category) {
 };
 
 // ============== Begin code for linking Sqoot query by category ======================================
-
-$('#food').click(function() {
-
-  $('.responseDIV').empty();
-
- callCity(inputCity, "food-grocery,food_alcohol,restaurants,kosher,dining-nightlife");
-
-});
-
-$('#activities').click(function() {
-   $('.responseDIV').empty();
-
- callCity(inputCity, "fitness,gym,activities-events,bowling,city-tours,comedy-clubs,concerts");
-});
-
-$('#drinks').click(function() {
-   $('.responseDIV').empty();
-
- callCity(inputCity, "food_alcohol,bars-clubs,dining-nightlife,wine-tasting");
-});
-
-$('#shopping').click(function() {
-   $('.responseDIV').empty();
-
- callCity(inputCity, "fashion_accessories,home_goods,luggage,gifts,kitchen,women_fashion,womens-clothing,special-interest,retail-services,movies_music_games,mens-clothing,mens_fashion");
-});
-
-$('#parks').click(function() {
-   $('.responseDIV').empty();
-
- callCity(inputCity, "outdoor-adventures,city-tours,golf,skiing,skydiving,yoga");
-});
-
-$('#museums').click(function() {
-   $('.responseDIV').empty();
-
- callCity(inputCity, "museums");
-});
-
-$('#dealDefault').click(function() {
-   $('.responseDIV').empty();
-
- callCity(inputCity, "default");
-});

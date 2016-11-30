@@ -284,7 +284,10 @@
   font-size: 15px;
 }
 
-
+.responseIMAGE {
+	width: 120px;
+	height: 80px;
+}
 
 .responseDIV {
 	float: left;
