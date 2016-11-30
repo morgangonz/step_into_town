@@ -1,24 +1,51 @@
 //******  icon click function  *******//
-$('#activities').on('click',function(){
+$('#active').on('click',function(){
   search('gym');
+
+  $('.responseDIV').empty();
+  callCity(inputCity, "fitness,gym,activities-events,bowling,city-tours,comedy-clubs,concerts");
+  
 });
+
 $('#food').on('click',function(){
   search('restaurant');
+
+  $('.responseDIV').empty();
+  callCity(inputCity, "food-grocery,food_alcohol,restaurants,kosher,dining-nightlife");
 });
+
 $('#drinks').on('click',function(){
   search('night_club');
+
+  $('.responseDIV').empty();
+  callCity(inputCity, "food_alcohol,bars-clubs,dining-nightlife,wine-tasting");
 });
+
 $('#shopping').on('click',function(){
   search('shopping_mall');
+
+  $('.responseDIV').empty();
+  callCity(inputCity, "fashion_accessories,home_goods,luggage,gifts,kitchen,women_fashion,womens-clothing,special-interest,retail-services,movies_music_games,mens-clothing,mens_fashion");
 });
+
 $('#parks').on('click',function(){
   search('park');
+
+  $('.responseDIV').empty();
+  callCity(inputCity, "outdoor-adventures,city-tours,golf,skiing,skydiving,yoga");
 });
+
 $('#museums').on('click',function(){
   search('museum');
+
+  $('.responseDIV').empty();
+  callCity(inputCity, "museums");
 });
+
 $('#deals').on('click',function(){
   sqoot();
+  $('.responseDIV').empty();
+  callCity(inputCity, "default");
 
 });
 
@@ -75,16 +102,19 @@ $('#deals').on('click',function(){
           map.setZoom(15);
           search();
 
-          else {
-            var tempCity = places[0].formatted_address;
-            // this tells js to look for teh first comma in the string for formatted_address. It then takes whatever is in front of it (the zero index after the split)
-            tempCity = tempCity.split(",")[0];
-            console.log("this is" + tempCity);
-            // run ajax call to Sqoot API
-            inputCity = tempCity;
-            callCity(tempCity, "default");
-        }
-      }  
+           }
+      } 
+
+      function sqoot() {
+      
+        var tempCity = places[0].formatted_address;
+          // this tells js to look for teh first comma in the string for formatted_address. It then takes whatever is in front of it (the zero index after the split)
+          tempCity = tempCity.split(",")[0];
+          console.log("this is" + tempCity);
+          // run ajax call to Sqoot API
+          inputCity = tempCity;
+          callCity(tempCity, "default");
+      }
         
       // Search for all buttons activities in the selected city, within the viewport of the map.
       function search(x) {
@@ -338,46 +368,46 @@ function callCity(tempCity, category) {
 
 // ============== Begin code for linking Sqoot query by category ======================================
 
-$('#food').click(function() {
-
-  $('.responseDIV').empty();
-
- callCity(inputCity, "food-grocery,food_alcohol,restaurants,kosher,dining-nightlife");
-
-});
-
-$('#activities').click(function() {
-   $('.responseDIV').empty();
-
- callCity(inputCity, "fitness,gym,activities-events,bowling,city-tours,comedy-clubs,concerts");
-});
-
-$('#drinks').click(function() {
-   $('.responseDIV').empty();
-
- callCity(inputCity, "food_alcohol,bars-clubs,dining-nightlife,wine-tasting");
-});
-
-$('#shopping').click(function() {
-   $('.responseDIV').empty();
-
- callCity(inputCity, "fashion_accessories,home_goods,luggage,gifts,kitchen,women_fashion,womens-clothing,special-interest,retail-services,movies_music_games,mens-clothing,mens_fashion");
-});
-
-$('#parks').click(function() {
-   $('.responseDIV').empty();
-
- callCity(inputCity, "outdoor-adventures,city-tours,golf,skiing,skydiving,yoga");
-});
-
-$('#museums').click(function() {
-   $('.responseDIV').empty();
-
- callCity(inputCity, "museums");
-});
-
-$('#dealDefault').click(function() {
-   $('.responseDIV').empty();
-
- callCity(inputCity, "default");
-});
+// $('#food').click(function() {
+// 
+  // $('.responseDIV').empty();
+// 
+ // callCity(inputCity, "food-grocery,food_alcohol,restaurants,kosher,dining-nightlife");
+// 
+// });
+// 
+// $('#activities').click(function() {
+   // $('.responseDIV').empty();
+// 
+ // callCity(inputCity, "fitness,gym,activities-events,bowling,city-tours,comedy-clubs,concerts");
+// });
+// 
+// $('#drinks').click(function() {
+   // $('.responseDIV').empty();
+// 
+ // callCity(inputCity, "food_alcohol,bars-clubs,dining-nightlife,wine-tasting");
+// });
+// 
+// $('#shopping').click(function() {
+   // $('.responseDIV').empty();
+// 
+ // callCity(inputCity, "fashion_accessories,home_goods,luggage,gifts,kitchen,women_fashion,womens-clothing,special-interest,retail-services,movies_music_games,mens-clothing,mens_fashion");
+// });
+// 
+// $('#parks').click(function() {
+   // $('.responseDIV').empty();
+// 
+ // callCity(inputCity, "outdoor-adventures,city-tours,golf,skiing,skydiving,yoga");
+// });
+// 
+// $('#museums').click(function() {
+   // $('.responseDIV').empty();
+// 
+ // callCity(inputCity, "museums");
+// });
+// 
+// $('#dealDefault').click(function() {
+   // $('.responseDIV').empty();
+// 
+ // callCity(inputCity, "default");
+//});
