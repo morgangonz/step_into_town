@@ -16,6 +16,7 @@
 		<link href="https://fonts.googleapis.com/css?family=Kalam|Satisfy" rel="stylesheet">
 		<!-- custom css styling -->
 		<link rel="stylesheet" type="text/css" href="assets/step.css">
+		<link rel="stylesheet" type="text/css" href="assets/containers.css">
 
 		<!--jQuery-->
 		<script src="https://code.jquery.com/jquery-2.2.3.js" integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4=" crossorigin="anonymous"></script>
@@ -38,15 +39,13 @@
                     	<span class="element"></span>
                     	<img src = "images/static-footprint2.png">
                     	</div>
-                    </div>	
+                    </div>	       
+                     			
+           	</div>        	
 
-			<div class="col-lg-12 text-center" id ="about">
-
-           </div>         
-                    			
-           </div>
-
-
+<div class= "col-md-12" id="question">
+	<h2>What do you want to do today?</h2>
+</div> 
 
 <!--typed animation from MB -->
 
@@ -60,92 +59,83 @@
 <!-- Activities buttons -->
     <!-- The circle icons feature an img and then words under for an entire on click btn -->
     
-    <div class="container2">
-        <div class="row text-center">
-            <div class="col-lg-10 col-lg-offset-1">
-
-            	<div id ="services">
-					<h3>What do you want to do today?</h3>
-				</div>	
-               
-	                <div class="rowBtns">
-					<span class= "button-header">
-
-						<button type="button" class= "btns" id="active"><img src = "images/w-heart.png"><br>Fitness</button>
-						<button type="button" class="btns" id="food"> <img src = "images/w-food.png"><br>Food </button>
-						<button type="button" class="btns" id="drinks"><img src = "images/w-drinks.png"><br>Drinks </button>
-						<button type="button" class="btns" id="shopping"><img src = "images/w-shopper.png"><br>Shopping </button>
-						<button type="button" class="btns" id="parks"><img src = "images/w-park.png"><br>Parks </button>
-						<button type="button" class="btns" id="museums"><img src = "images/w-museum.png"><br>Museums </button>
-						<button type="button" class="btns" id="deals"><img src = "images/w-deals.png"><br>Deals
-						</button>
-					</span>	
-					</div>
+    <div class="container2 col-md-3">
+     
+        
+			<div class= "button-header">
+				<button type="button" class= "btns"><img class ="char" src = "images/w-heart.png">     Workout</button>
+				<button type="button" class="btns"><img class ="char" src = "images/w-food.png">     Go out to Eat</button>
+				<button type="button" class="btns"><img class ="char" src = "images/w-drinks.png">     Get Drinks</button>
+				<button type="button" class="btns"><img class ="char" src = "images/w-shopper.png">    Go Shopping</button>
+				<button type="button" class="btns"><img class ="char" src = "images/w-park.png">     Go to a park </button>
+				<button type="button" class="btns"><img class ="char" src = "images/w-museum.png">     Go to Museums </button>
+				<button type="button" class="btns"><img class ="char" src = "images/w-deals.png">     Save Money</button>
 			</div>	
-		</div>
+	</div>	
+
+<!-- sqoot deals -->
+<div id="dealsFromSqoot" class="col-md-3">
+DEALS GO HERE!!!!
+</div>    
+
+ <!--google maps-->
+ <div id="result"></div>
+	
+<div id="map" class ="container4 col-md-6"></div>
+
+
+<div style="display: none">
+  <div id="info-content">
+    <table>
+      <tr id="iw-url-row" class="iw_table_row">
+        <td id="iw-icon" class="iw_table_icon"></td>
+        <td id="iw-url"></td>
+      </tr>
+      <tr id="iw-address-row" class="iw_table_row">
+        <td class="iw_attribute_name">Address:</td>
+        <td id="iw-address"></td>
+      </tr>
+      <tr id="iw-phone-row" class="iw_table_row">
+        <td class="iw_attribute_name">Telephone:</td>
+        <td id="iw-phone"></td>
+      </tr>
+      <tr id="iw-rating-row" class="iw_table_row">
+        <td class="iw_attribute_name">Rating:</td>
+        <td id="iw-rating"></td>
+      </tr>
+      <tr id="iw-website-row" class="iw_table_row">
+        <td class="iw_attribute_name">Website:</td>
+        <td id="iw-website"></td>
+      </tr>
+    </table>
+  </div>
+</div>
 		
-	</div>		
 
-		<div class="container3 row">
+<!--footer-->
 
-            <div class="col-lg-12 text-center">
-                
+<div id ="footer" class= "col-md-12">
+	Copyright 2016 UCF Coding Bootcamp <br>
+	Group Project: Step 'n' Town <br>
 
-                
-                
-	                
-						<!--footprints gif-->
-						<a id ="walking" href="http://www.animatedimages.org/cat-footsteps-1203.htm"><img src="http://www.animatedimages.org/data/media/1203/animated-footstep-image-0001.gif" border="0" alt="animated-footstep-image-0001"/></a>
-	    		
-            
-            </div>
-        </div>
-        <div class="container4"> 
-        	<div id="result"></div>
-        	
-    		<!--google maps-->
-    		<div id="map"></div>
-    	</div>
-
-    	<div style="display: none">
-	      <div id="info-content">
-	        <table>
-	          <tr id="iw-url-row" class="iw_table_row">
-	            <td id="iw-icon" class="iw_table_icon"></td>
-	            <td id="iw-url"></td>
-	          </tr>
-	          <tr id="iw-address-row" class="iw_table_row">
-	            <td class="iw_attribute_name">Address:</td>
-	            <td id="iw-address"></td>
-	          </tr>
-	          <tr id="iw-phone-row" class="iw_table_row">
-	            <td class="iw_attribute_name">Telephone:</td>
-	            <td id="iw-phone"></td>
-	          </tr>
-	          <tr id="iw-rating-row" class="iw_table_row">
-	            <td class="iw_attribute_name">Rating:</td>
-	            <td id="iw-rating"></td>
-	          </tr>
-	          <tr id="iw-website-row" class="iw_table_row">
-	            <td class="iw_attribute_name">Website:</td>
-	            <td id="iw-website"></td>
-	          </tr>
-	        </table>
-	      </div>
-	    </div>
-
-    	
-		<!-- sqoot deals -->
-		<div id="dealsFromSqoot">
-
+		<!--footprints gif-->
+		<a id ="walking" href="http://www.animatedimages.org/cat-footsteps-1203.htm"><img src="http://www.animatedimages.org/data/media/1203/animated-footstep-image-0001.gif" border="0" alt="animated-footstep-image-0001"/></a><br>
+</div>
 		
-		</div>
+
+		<!--JS Google Maps API plus custom file-->	
+
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfjDeIgIBM1FumpRj68zq9Soze0RL2odM&libraries=places&callback=initMap"
         async defer></script>
+		
 		<!-- custom JS link -->
 		<script src="assets/step.js"></script>
 
 		<script src="assets/step_buttondeals.js"></script>
+
+
+
+	
 
 
 </body>
