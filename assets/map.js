@@ -1,21 +1,21 @@
 //******  icon click function  *******//
 $('#active').on('click',function(){
-  search('gym');
+  search('gym', 'red');
 });
 $('#food').on('click',function(){
-  search('restaurant');
+  search('restaurant', 'yellow');
 });
 $('#drinks').on('click',function(){
-  search('night_club');
+  search('night_club','blue');
 });
 $('#shopping').on('click',function(){
-  search('shopping_mall');
+  search('shopping_mall','green');
 });
-$('#parks').on('click',function(){
-  search('park');
+$('#park').on('click',function(){
+  search('park','orange');
 });
-$('#museums').on('click',function(){
-  search('museum');
+$('#museum').on('click',function(){
+  search('museum','purple');
 });
 
 //*************  Google Map  *************//
@@ -107,7 +107,7 @@ function onPlaceChanged() {
 };
   
 // Search for all buttons activities in the selected city, within the viewport of the map.
-function search(x) {
+function search(x, markerColor) {
   var search = {
     bounds: map.getBounds(),
     types: [x]
@@ -122,7 +122,7 @@ function search(x) {
         markers[i] = new google.maps.Marker({
           position: results[i].geometry.location,
           animation: google.maps.Animation.DROP,
-          icon: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png'
+          icon: 'http://maps.google.com/mapfiles/ms/icons/' + markerColor + '-dot.png'
         });
         // If the user clicks a marker, show the details of their information
         // in a window.
