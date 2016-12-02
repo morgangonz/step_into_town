@@ -1,236 +1,245 @@
 //******  icon click function  *******//
-$('#activities').on('click',function(){
-  search('gym');
+$('#active').on('click',function(){
+  search('gym', 'red');
+
+       $('.responseDIV').empty();
+
+ callCity(inputCity, "fitness,martial-arts,gym,activities-events,bowling,city-tours,comedy-clubs,concerts");
 });
 $('#food').on('click',function(){
-  search('restaurant');
+  search('restaurant', 'yellow');
+
+  $('.responseDIV').empty();
+
+ callCity(inputCity, "food-grocery,food_alcohol,restaurants,kosher,dining-nightlife");
 });
 $('#drinks').on('click',function(){
-  search('night_club');
+  search('night_club','blue');
+
+  $('.responseDIV').empty();
+
+ callCity(inputCity, "food_alcohol,bars-clubs,dining-nightlife,wine-tasting");
 });
 $('#shopping').on('click',function(){
-  search('shopping_mall');
-});
-$('#parks').on('click',function(){
-  search('park');
-});
-$('#museums').on('click',function(){
-  search('museum');
-});
-$('#deals').on('click',function(){
-  sqoot();
+  search('shopping_mall','green');
 
+   $('.responseDIV').empty();
+
+ callCity(inputCity, "fashion_accessories,home_goods,luggage,gifts,kitchen,women_fashion,womens-clothing,special-interest,retail-services,movies_music_games,mens-clothing,mens_fashion");
+});
+$('#park').on('click',function(){
+  search('park','orange');
+
+  $('.responseDIV').empty();
+
+ callCity(inputCity, "outdoor-adventures,city-tours,golf,skiing,skydiving,yoga");
+});
+$('#museum').on('click',function(){
+  search('museum','purple');
+
+  $('.responseDIV').empty();
+
+ callCity(inputCity, "museums");
 });
 
 //*************  Google Map  *************//
 
-      var map, places, infoWindow;
-      var markers = [];
-      var autocomplete;
-      var countryRestrict = {'country': 'us'};
-      var MARKER_PATH = 'https://developers.google.com/maps/documentation/javascript/images/marker_green';
-      var hostnameRegexp = new RegExp('^https?://.+?/');
+var map, places, infoWindow;
+var markers = [];
+var autocomplete;
+var hostnameRegexp = new RegExp('^https?://.+?/');$('.responseDIV').empty();
+
+ callCity(inputCity, "food_alcohol,bars-clubs,dining-nightlife,wine-tasting");
+
+//map style
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 18.463426, lng: 3.558594},
+    mapTypeControl: false,
+    panControl: false,
+    scrollwheel: false,
+    streetViewControl: false,
+    zoom: 1
 
 
-
-      //map style
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 30.463426, lng: -3.558594},
-          mapTypeControl: false,
-          panControl: false,
-          scrollwheel: false,
-          zoomControl: false,
-          streetViewControl: false,
-          zoom: 2
-
-
-        });
-        //shops information
-        infoWindow = new google.maps.InfoWindow({
-          content: document.getElementById('info-content')
-        });
-
-        // Create the autocomplete object and associate it with the UI input control.
-        // Restrict the search to the default country, and to place type "cities".
-        autocomplete = new google.maps.places.Autocomplete(
-            /** @type {!HTMLInputElement} */ 
-            (document.getElementById('autocomplete')), {
-              types: ['(cities)'],
-              componentRestrictions: countryRestrict
-            });
-        places = new google.maps.places.PlacesService(map);
-
-        autocomplete.addListener('place_changed', onPlaceChanged);
-
-      } 
- 
-
-      // When the user selects a city, get the place details for the city and
-      // zoom the map in on the city.
-      function onPlaceChanged() {
-        var place = autocomplete.getPlace();
-        if (place.geometry) {
-          map.panTo(place.geometry.location);
-          map.setZoom(15);
-          search();
-        }
-          else {
-            var tempCity = places[0].formatted_address;
-            // this tells js to look for teh first comma in the string for formatted_address. It then takes whatever is in front of it (the zero index after the split)
-            tempCity = tempCity.split(",")[0];
-            console.log("this is" + tempCity);
-            // run ajax call to Sqoot API
-            inputCity = tempCity;
-            callCity(tempCity, "default");
-        }
-      }  
-        
-      // Search for all buttons activities in the selected city, within the viewport of the map.
-      function search(x) {
-        var search = {
-          bounds: map.getBounds(),
-          types: [x]
-        };
-
-        places.nearbySearch(search, function(results, status) {
-          if (status === google.maps.places.PlacesServiceStatus.OK) {
-            clearResults();
-            clearMarkers();
-            // Create a marker for each place found, and
-            // assign a letter of the alphabetic to each marker icon.
-            for (var i = 0; i < results.length; i++) {
-              var markerLetter = String.fromCharCode('A'.charCodeAt(0) + (i % 26));
-              var markerIcon = MARKER_PATH + markerLetter + '.png';
-              // Use marker animation to drop the icons incrementally on the map.
-              markers[i] = new google.maps.Marker({
-                position: results[i].geometry.location,
-                animation: google.maps.Animation.DROP,
-                icon: markerIcon
-              });
-              // If the user clicks a marker, show the details of that hotel
-              // in an info window.
-              markers[i].placeResult = results[i];
-              google.maps.event.addListener(markers[i], 'click', showInfoWindow);
-              setTimeout(dropMarker(i), i * 100);
-              addResult(results[i], i);
-            }
-          }
-        });
-        $("#autocomplete").val("");
+  });
+  //map style
+  var styles = [
+  {
+    "featureType": "poi.park",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#9dd68f"
       }
+    ]
+  },
+  {
+    "featureType": "transit.station.airport",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#dfd5d6"
+      }
+    ]
+  },
+  {
+    "featureType": "water",
+    "stylers": [
+      {
+        "color": "#71CDE8"
+      }
+    ]
+  }
+];
 
+  map.setOptions({styles: styles});
+
+  //shops information
+  infoWindow = new google.maps.InfoWindow({
+    content: document.getElementById('info-content')
+  });
+
+  // Create the autocomplete object and associate it with the UI input control.
+  // Restrict the search to the default country, and to place type "cities".
+  autocomplete = new google.maps.places.Autocomplete(
+      /** @type {!HTMLInputElement} */ 
+      (document.getElementById('autocomplete')), {
+        types: ['(cities)'],
+      });
+  places = new google.maps.places.PlacesService(map);
+
+  autocomplete.addListener('place_changed', onPlaceChanged);
+
+} 
+
+
+// When the user selects a city, get the place details for the city and
+// zoom the map in on the city.
+function onPlaceChanged() {
+  var place = autocomplete.getPlace();
+  if (place.geometry) {
+    map.panTo(place.geometry.location);
+    map.setZoom(14);
+  } else {
+    var tempCity = place.name;
+    // this tells js to look for teh first comma in the string for formatted_address. It then takes whatever is in front of it (the zero index after the split)
+    inputCity = tempCity;
+    callCity(tempCity, "default");
+  }
+};
   
-      function clearMarkers() {
-        for (var i = 0; i < markers.length; i++) {
-          if (markers[i]) {
-            markers[i].setMap(null);
-          }
+// Search for all buttons activities in the selected city, within the viewport of the map.
+function search(x, markerColor) {
+  var search = {
+    bounds: map.getBounds(),
+    types: [x]
+  };
+
+  places.nearbySearch(search, function(results, status) {
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+      // Create a marker for each place found, and
+      // assign image to each marker icon.
+      for (var i = 0; i < results.length; i++) {
+        // Use marker animation to drop the icons incrementally on the map.
+        markers[i] = new google.maps.Marker({
+          position: results[i].geometry.location,
+          animation: google.maps.Animation.DROP,
+          icon: 'http://maps.google.com/mapfiles/ms/icons/' + markerColor + '-dot.png'
+        });
+        // If the user clicks a marker, show the details of their information
+        // in a window.
+        markers[i].placeResult = results[i];
+        google.maps.event.addListener(markers[i], 'click', showInfoWindow);
+        setTimeout(dropMarker(i), i * 100);
+        addResult(results[i], i);
+      }
+    }
+  });
+  $("#autocomplete").val("");
+}
+
+
+function dropMarker(i) {
+  return function() {
+    markers[i].setMap(map);
+  };
+}
+
+//marker design
+function addResult(result, i) {
+  var results = document.getElementById('results');
+  var tr = document.createElement('tr');
+
+  tr.onclick = function() {
+    google.maps.event.trigger(markers[i], 'click');
+  };
+  var name = document.createTextNode(result.name);
+}
+
+// Get the place details for a place. Show the information in an info window,
+// anchored on the marker for the place that the user selectsed.
+function showInfoWindow() {
+  var marker = this;
+  places.getDetails({placeId: marker.placeResult.place_id},
+      function(place, status) {
+        if (status !== google.maps.places.PlacesServiceStatus.OK) {
+          return;
         }
-        markers = [];
+        infoWindow.open(map, marker);
+        buildIWContent(place);
+      });
+}
+
+// Load the place information into the HTML elements used by the info window.
+function buildIWContent(place) {
+  document.getElementById('iw-icon').innerHTML = '<img class="searchIcon" ' +
+      'src="' + place.icon + '"/>';
+  document.getElementById('iw-url').innerHTML = '<b><a href="' + place.url +
+      '">' + place.name + '</a></b>';
+  document.getElementById('iw-address').textContent = place.vicinity;
+
+  if (place.formatted_phone_number) {
+    document.getElementById('iw-phone-row').style.display = '';
+    document.getElementById('iw-phone').textContent =
+        place.formatted_phone_number;
+  } else {
+    document.getElementById('iw-phone-row').style.display = 'none';
+  }
+
+  // Assign a five-star rating to restaurant, using a black star ('&#10029;')
+  // to indicate the rating the restaurant has earned, and a white star ('&#10025;')
+  // for the rating points not achieved.
+  if (place.rating) {
+    var ratingHtml = '';
+    for (var i = 0; i < 5; i++) {
+      if (place.rating < (i + 0.5)) {
+        ratingHtml += '&#10025;';
+      } else {
+        ratingHtml += '&#10029;';
       }
+    document.getElementById('iw-rating-row').style.display = '';
+    document.getElementById('iw-rating').innerHTML = ratingHtml;
+    }
+  } else {
+    document.getElementById('iw-rating-row').style.display = 'none';
+  }
 
-
-      function dropMarker(i) {
-        return function() {
-          markers[i].setMap(map);
-        };
-      }
-
-      //marker design
-      function addResult(result, i) {
-        var results = document.getElementById('results');
-        var markerLetter = String.fromCharCode('A'.charCodeAt(0) + (i % 26));
-        var markerIcon = MARKER_PATH + markerLetter + '.png';
-
-        //border color design
-        var tr = document.createElement('tr');
-        tr.onclick = function() {
-          google.maps.event.trigger(markers[i], 'click');
-        };
-
-        var iconTd = document.createElement('td');
-        var nameTd = document.createElement('td');
-        var icon = document.createElement('img');
-        icon.src = markerIcon;
-        icon.setAttribute('class', 'placeIcon');
-        icon.setAttribute('className', 'placeIcon');
-        var name = document.createTextNode(result.name);
-        
-      }
-
-      function clearResults() {
-        var results = document.getElementById('results');
-        while (results.childNodes[0]) {
-          results.removeChild(results.childNodes[0]);
-        }
-      }
-
-      // Get the place details for a hotel. Show the information in an info window,
-      // anchored on the marker for the hotel that the user selected.
-      function showInfoWindow() {
-        var marker = this;
-        places.getDetails({placeId: marker.placeResult.place_id},
-            function(place, status) {
-              if (status !== google.maps.places.PlacesServiceStatus.OK) {
-                return;
-              }
-              infoWindow.open(map, marker);
-              buildIWContent(place);
-            });
-      }
-
-      // Load the place information into the HTML elements used by the info window.
-      function buildIWContent(place) {
-        document.getElementById('iw-icon').innerHTML = '<img class="searchIcon" ' +
-            'src="' + place.icon + '"/>';
-        document.getElementById('iw-url').innerHTML = '<b><a href="' + place.url +
-            '">' + place.name + '</a></b>';
-        document.getElementById('iw-address').textContent = place.vicinity;
-
-        if (place.formatted_phone_number) {
-          document.getElementById('iw-phone-row').style.display = '';
-          document.getElementById('iw-phone').textContent =
-              place.formatted_phone_number;
-        } else {
-          document.getElementById('iw-phone-row').style.display = 'none';
-        }
-
-        // Assign a five-star rating to the hotel, using a black star ('&#10029;')
-        // to indicate the rating the hotel has earned, and a white star ('&#10025;')
-        // for the rating points not achieved.
-        if (place.rating) {
-          var ratingHtml = '';
-          for (var i = 0; i < 5; i++) {
-            if (place.rating < (i + 0.5)) {
-              ratingHtml += '&#10025;';
-            } else {
-              ratingHtml += '&#10029;';
-            }
-          document.getElementById('iw-rating-row').style.display = '';
-          document.getElementById('iw-rating').innerHTML = ratingHtml;
-          }
-        } else {
-          document.getElementById('iw-rating-row').style.display = 'none';
-        }
-
-        // The regexp isolates the first part of the URL (domain plus subdomain)
-        // to give a short URL for displaying in the info window.
-        if (place.website) {
-          var fullUrl = place.website;
-          var website = hostnameRegexp.exec(place.website);
-          if (website === null) {
-            website = 'http://' + place.website + '/';
-            fullUrl = website;
-          }
-          document.getElementById('iw-website-row').style.display = '';
-          document.getElementById('iw-website').textContent =  website;
-        } else {
-          document.getElementById('iw-website-row').style.display = 'none';
-        }
-      }
-
-
+  // The regexp isolates the first part of the URL (domain plus subdomain)
+  // to give a short URL for displaying in the info window.
+  if (place.website) {
+    var fullUrl = place.website;
+    var website = hostnameRegexp.exec(place.website);
+    if (website === null) {
+      website = 'http://' + place.website + '/';
+      fullUrl = website;
+    }
+    document.getElementById('iw-website-row').style.display = '';
+    document.getElementById('iw-website').textContent =  website;
+  } else {
+    document.getElementById('iw-website-row').style.display = 'none';
+  }
+}
 
 
 //***************** START CODING FOR SQOOT API *******************
@@ -277,7 +286,7 @@ function callCity(tempCity, category) {
     var dealURL = [];
 
     // Get 5 results and their related images from Sqoot
-    for (var i = 0; i < 35; i++) {
+    for (var i = 0; i < 6; i++) {
 
       if (response.deals[i] != null) {
 
@@ -332,47 +341,3 @@ function callCity(tempCity, category) {
 };
 
 // ============== Begin code for linking Sqoot query by category ======================================
-
-$('#food').click(function() {
-
-  $('.responseDIV').empty();
-
- callCity(inputCity, "food-grocery,food_alcohol,restaurants,kosher,dining-nightlife");
-
-});
-
-$('#activities').click(function() {
-   $('.responseDIV').empty();
-
- callCity(inputCity, "fitness,gym,activities-events,bowling,city-tours,comedy-clubs,concerts");
-});
-
-$('#drinks').click(function() {
-   $('.responseDIV').empty();
-
- callCity(inputCity, "food_alcohol,bars-clubs,dining-nightlife,wine-tasting");
-});
-
-$('#shopping').click(function() {
-   $('.responseDIV').empty();
-
- callCity(inputCity, "fashion_accessories,home_goods,luggage,gifts,kitchen,women_fashion,womens-clothing,special-interest,retail-services,movies_music_games,mens-clothing,mens_fashion");
-});
-
-$('#parks').click(function() {
-   $('.responseDIV').empty();
-
- callCity(inputCity, "outdoor-adventures,city-tours,golf,skiing,skydiving,yoga");
-});
-
-$('#museums').click(function() {
-   $('.responseDIV').empty();
-
- callCity(inputCity, "museums");
-});
-
-$('#dealDefault').click(function() {
-   $('.responseDIV').empty();
-
- callCity(inputCity, "default");
-});
