@@ -15,7 +15,8 @@
 .container2 {
 	background-color: #00ADEF;
 	width:250px;
-	color: #edf2f9;	
+	color: #edf2f9;
+	position: relative;
 	float:left;
 	font-family: 'Kalam', cursive;
 }
@@ -115,7 +116,7 @@
 }
 
 #map {
-  	height: 450px; 	
+  	height: 450px;
   	margin-bottom: 50px;
   	margin-left: 20px;
   	width: 550px;
@@ -144,14 +145,13 @@
 
 
 #dealsFromSqoot {
-  margin-left:0px;
-  width: 40%;
-  height:400px;
+  margin-left: 0px;
+ /* width: 40%;*/
   padding-bottom: 20px;
   font-family: 'Kalam', cursive;
   font-size: 15px;
   background-color:#00ADEF;
-  float:right;
+  float: left;
 }
 
 /* ==== ??? ==== */
@@ -163,7 +163,7 @@
 
 .responseDIV {
 	float: left;
-	/*position: relative;*/
+	position: relative;
 	display: inline;
 	margin-right: 10px;
 	margin-bottom: 10px;
@@ -176,5 +176,4 @@
 	font-family: Arial, 'Arial Narrow', sans-serif;
 	font-size: 12px;
 	color: #ffffff;
-
 }

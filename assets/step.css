@@ -12,8 +12,8 @@ body {
 	font-family: 'Satisfy', cursive;
 	text-align: center;
 	display: table;
-    position: relative;
     width: 100%;
+    position: relative;
     height: 700px;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -39,10 +39,11 @@ body {
 	margin-left:30%;
 	height: 140px;
 	color: #00ADEF;
-
 }
 
 #footer {
+	display: block;
+	clear: both;
 	background-color:white;
 	opacity:.8;
 	color:grey;
