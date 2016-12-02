@@ -36,9 +36,18 @@ body {
 	border-radius: 5px;
 	font-family: 'Kalam', cursive;
 	font-size:18px;
-	margin-left:30%;
-	height: 140px;
 	color: #00ADEF;
+	height:50px;
+}
+#go {
+	height:45px;
+	width:40px;
+	border-radius: 5px;
+	color:#00ADEF;
+	background-color:white;
+	opacity:.8;
+	font-family: 'Kalam', cursive;
+	font-size:18px;
 }
 
 #footer {
