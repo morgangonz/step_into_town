@@ -1,47 +1,51 @@
 //******  icon click function  *******//
 $('#active').on('click',function(){
+  //category: gym and markers color red
   search('gym', 'red');
 
-       $('.responseDIV').empty();
-
- callCity(inputCity, "fitness,martial-arts,gym,activities-events,bowling,city-tours,comedy-clubs,concerts");
+  $('.responseDIV').empty();
+  callCity(inputCity, "fitness,martial-arts,gym,activities-events,bowling,city-tours,comedy-clubs,concerts");
 });
+
 $('#food').on('click',function(){
+  //category: restaurant and markers color yello
   search('restaurant', 'yellow');
 
   $('.responseDIV').empty();
-
- callCity(inputCity, "food-grocery,food_alcohol,restaurants,kosher,dining-nightlife");
+  callCity(inputCity, "food-grocery,food_alcohol,restaurants,kosher,dining-nightlife");
 });
+
 $('#drinks').on('click',function(){
   search('night_club','blue');
 
   $('.responseDIV').empty();
-
- callCity(inputCity, "food_alcohol,bars-clubs,dining-nightlife,wine-tasting");
+  callCity(inputCity, "food_alcohol,bars-clubs,dining-nightlife,wine-tasting");
 });
+
 $('#shopping').on('click',function(){
   search('shopping_mall','green');
 
    $('.responseDIV').empty();
-
- callCity(inputCity, "fashion_accessories,home_goods,luggage,gifts,kitchen,women_fashion,womens-clothing,special-interest,retail-services,movies_music_games,mens-clothing,mens_fashion");
+   callCity(inputCity, "fashion_accessories,home_goods,luggage,gifts,kitchen,women_fashion,womens-clothing,special-interest,retail-services,movies_music_games,mens-clothing,mens_fashion");
 });
+
 $('#park').on('click',function(){
   search('park','orange');
 
   $('.responseDIV').empty();
-
- callCity(inputCity, "outdoor-adventures,city-tours,golf,skiing,skydiving,yoga");
+  callCity(inputCity, "outdoor-adventures,city-tours,golf,skiing,skydiving,yoga");
 });
+
 $('#museum').on('click',function(){
   search('museum','purple');
 
   $('.responseDIV').empty();
-
- callCity(inputCity, "museums");
+  callCity(inputCity, "museums");
 });
 
+$('#clear').on('click',function(){
+   clearMarkers();
+})
 //*************  Google Map  *************//
 
 var map, places, infoWindow;
@@ -65,33 +69,33 @@ function initMap() {
   });
   //map style
   var styles = [
-  {
-    "featureType": "poi.park",
-    "elementType": "geometry",
-    "stylers": [
-      {
-        "color": "#9dd68f"
-      }
-    ]
-  },
-  {
-    "featureType": "transit.station.airport",
-    "elementType": "geometry",
-    "stylers": [
-      {
-        "color": "#dfd5d6"
-      }
-    ]
-  },
-  {
-    "featureType": "water",
-    "stylers": [
-      {
-        "color": "#71CDE8"
-      }
-    ]
-  }
-];
+    {
+      "featureType": "poi.park",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#9dd68f"
+        }
+      ]
+    },
+    {
+      "featureType": "transit.station.airport",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#dfd5d6"
+        }
+      ]
+    },
+    {
+      "featureType": "water",
+      "stylers": [
+        {
+          "color": "#71CDE8"
+        }
+      ]
+    }
+    ];
 
   map.setOptions({styles: styles});
 
@@ -164,6 +168,14 @@ function dropMarker(i) {
   return function() {
     markers[i].setMap(map);
   };
+}
+
+function clearMarkers() {
+      for (var i = 0; i < markers.length; i++) {
+        if (markers[i]) {
+          markers[i].setMap(null);
+        }
+      };
 }
 
 //marker design
