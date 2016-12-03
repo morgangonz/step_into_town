@@ -339,3 +339,6 @@ function callCity(tempCity, category) {
 };
 
 // ============== Begin code for linking Sqoot query by category ======================================
+
+
+//comment
