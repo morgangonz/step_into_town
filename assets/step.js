@@ -251,7 +251,7 @@ function buildIWContent(place) {
       fullUrl = website;
     }
     document.getElementById('iw-website-row').style.display = '';
-    document.getElementById('iw-website').textContent =  website;
+    document.getElementById('iw-website').innerHTML = '<a target="_blank" href="' + website + '">' + website + '</a>';
   } else {
     document.getElementById('iw-website-row').style.display = 'none';
   }
