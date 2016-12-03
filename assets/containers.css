@@ -43,14 +43,47 @@
 
 }
 
-.btns:hover {
-	background-color:#82abed;
-	border: grey;
+
+#active:hover {
+	background-color:#F71B1B;	
+}
+#food:hover {
+	background-color:#F5F522;
+}
+#drinks:hover {
+	background-color:#0639A7;
+}
+#shopping:hover {
+	background-color:#51EB09;
+}
+#park:hover {
+	background-color:#F98F05;
+}
+#museum:hover {
+	background-color:#4C11A6;
 }
 
-.btns:focus {
-	background-color:grey;
+/****/
+
+#active:focus {
+	background-color:#F71B1B;	
 }
+#food:focus {
+	background-color:#F5F522;
+}
+#drinks:focus {
+	background-color:#0639A7;
+}
+#shopping:focus {
+	background-color:#51EB09;
+}
+#park:focus {
+	background-color:#F98F05;
+}
+#museum:focus {
+	background-color:#4C11A6;
+}
+
 
 
 /*************  Map css  *****************/
