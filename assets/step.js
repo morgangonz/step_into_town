@@ -153,7 +153,7 @@ function search(x, markerColor) {
         markers[i] = new google.maps.Marker({
           position: results[i].geometry.location,
           animation: google.maps.Animation.DROP,
-          icon: 'http://maps.google.com/mapfiles/ms/icons/' + markerColor + '-dot.png'
+          icon: 'https://maps.google.com/mapfiles/ms/icons/' + markerColor + '-dot.png'
         });
         // If the user clicks a marker, show the details of their information
         // in a window.
@@ -229,7 +229,7 @@ function buildIWContent(place) {
     var fullUrl = place.website;
     var website = hostnameRegexp.exec(place.website);
     if (website === null) {
-      website = 'http://' + place.website + '/';
+      website = 'https://' + place.website + '/';
       fullUrl = website;
     }
     document.getElementById('iw-website-row').style.display = '';
@@ -261,14 +261,14 @@ $('#dealsFromSquoot').empty();
 
 // Ajax call to Sqoot API
 // this first call populates the Sqoot Deals div
-var queryURL = 'http://api.sqoot.com/v2/deals?api_key=39zxwo4hbW89U737y87p&query=' + inputCity + '&radius=10&per_page=35';
+var queryURL = 'https://api.sqoot.com/v2/deals?api_key=39zxwo4hbW89U737y87p&query=' + inputCity + '&radius=10&per_page=35';
 console.log(queryURL);
 
 // this function inserts the search box input from Google as the target for Sqoot's API query
 function callCity(tempCity, category) {
 
   defaultCategory = category;
-  queryURL = 'http://api.sqoot.com/v2/deals?api_key=39zxwo4hbW89U737y87p&query=' + inputCity + '&radius=10&per_page=35';
+  queryURL = 'https://api.sqoot.com/v2/deals?api_key=39zxwo4hbW89U737y87p&query=' + inputCity + '&radius=10&per_page=35';
 
   $.ajax ({
   url: queryURL,
