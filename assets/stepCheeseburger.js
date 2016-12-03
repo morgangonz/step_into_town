@@ -125,7 +125,7 @@ function onPlaceChanged() {
   if (place.geometry) {
     map.panTo(place.geometry.location);
     map.setZoom(14);
-    var tempCity = place.name;
+     var tempCity = place.name;
     inputCity = tempCity;
     callCity(tempCity, "default");
   } else {
