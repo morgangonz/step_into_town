@@ -1,3 +1,3 @@
 # step_into_town
 <br>
-Our site is called Step n town, it was created to provide a local experience for tourists, or anyone traveling without a car who would like to not only be active and walk but also explore areas with numerous activities.
+A self guided walking tour of divided areas within a specific city that provides a day filled of places to eat, things to do, shops and unique finds--all within walking distance of each other.
